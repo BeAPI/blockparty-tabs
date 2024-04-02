@@ -1,0 +1,133 @@
+# Copyright (C) 2022 Be API Technical team
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Blockparty Tabs 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blockparty-tabs\n"
+"POT-Creation-Date: 2024-04-02T21:25:23+00:00\n"
+"PO-Revision-Date: 2024-04-02 23:27+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Domain: blockparty-tabs\n"
+
+#. Plugin Name of the plugin
+#: blockparty-tabs.php
+msgid "Blockparty Tabs"
+msgstr ""
+
+#. Description of the plugin
+#: blockparty-tabs.php
+msgid "Accessible Tabs block for WordPress gutenberg."
+msgstr "Bloc Tabs Accessible pour WordPress."
+
+#. Author of the plugin
+#: blockparty-tabs.php
+msgid "Be API Technical team"
+msgstr "Be API Technical team"
+
+#. Author URI of the plugin
+#: blockparty-tabs.php
+msgid "https://beapi.fr"
+msgstr "https://beapi.fr"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Move Item Before"
+msgstr "Déplacer l’élément à gauche"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Move Item After"
+msgstr "Déplacer l’élément à droite"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Icon"
+msgstr "Icône"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Add Item Before"
+msgstr "Ajouter un élément à gauche"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Add Item After"
+msgstr "Ajouter un élément à droite"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Delete Item"
+msgstr "Éliminer l’élément"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Item…"
+msgstr "Élément…"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Align top left"
+msgstr "Aligner en haut à gauche"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Align top center"
+msgstr "Aligner en haut au centre"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Align top right"
+msgstr "Aligner en haut à droite"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Align top justified"
+msgstr "Aligner en haut justifié"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Align sidebar right"
+msgstr "Barre latérale à droite"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Align sidebar left"
+msgstr "Barre latérale à gauche"
+
+#: build/blockparty-tabs/index.js:1
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+#: build/blockparty-tabs-nav-item/block.json
+msgctxt "block title"
+msgid "Tab"
+msgstr "Onglet"
+
+#: build/blockparty-tabs-nav-item/block.json
+#: build/blockparty-tabs-nav/block.json
+#: build/blockparty-tabs-panel-item/block.json
+#: build/blockparty-tabs-panels/block.json
+msgctxt "block description"
+msgid "Accessible tabs block item"
+msgstr "Bloc Onglet Accessible"
+
+#: build/blockparty-tabs-nav/block.json
+msgctxt "block title"
+msgid "Tabs list"
+msgstr "Liste des onglets"
+
+#: build/blockparty-tabs-panel-item/block.json
+msgctxt "block title"
+msgid "Panel"
+msgstr "Panneau"
+
+#: build/blockparty-tabs-panels/block.json
+msgctxt "block title"
+msgid "Panels"
+msgstr "Panneaux"
+
+#: build/blockparty-tabs/block.json
+msgctxt "block title"
+msgid "Tabs"
+msgstr "Onglets"
+
+#: build/blockparty-tabs/block.json
+msgctxt "block description"
+msgid "Accessible tabs block"
+msgstr "Bloc Onglet accessible pour WordPress"
+
+#~ msgid "Beapi Tabs Block"
+#~ msgstr "BeAPI Bloc Tabs"
