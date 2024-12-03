@@ -25,9 +25,11 @@ class TabsAutomatic {
 
 		for ( let i = 0; i < this.tabs.length; i += 1 ) {
 			const tab = this.tabs[ i ];
-			const tabpanel = document.getElementById(
-				tab.getAttribute( 'aria-controls' )
-			);
+			const tabpanel = this.tablistNode
+				.closest( '.wp-block-blockparty-tabs' )
+				.querySelectorAll( '.wp-block-blockparty-tabs-panels > *' )[
+				i
+			];
 
 			tab.tabIndex = -1;
 			tab.setAttribute( 'aria-selected', 'false' );
