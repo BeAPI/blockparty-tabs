@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "blockparty/tabs-panels",
+  "version": "1.0.1",
+  "title": "Panels",
+  "category": "widgets",
+  "icon": "category",
+  "description": "Accessible tabs block item",
+  "parent": [
+    "blockparty/tabs"
+  ],
+  "supports": {
+    "html": false,
+    "anchor": false,
+    "align": false,
+    "lock": false,
+    "reusable": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  },
+  "usesContext": [
+    "blockparty/Tabs",
+    "blockparty/TabsActive"
+  ],
+  "textdomain": "blockparty-tabs",
+  "editorScript": "file:./index.js"
+}
