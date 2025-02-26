@@ -41,7 +41,7 @@ add_action( 'init', __NAMESPACE__ . '\\init' );
 function allow_attributes( $tags, $context ) {
 	if ( 'post' === $context ) {
 		$tags['button']['aria-expanded'] = true;
-        $tags['div']['tabindex']         = true;
+		$tags['div']['tabindex']         = true;
 	}
 
 	return $tags;
