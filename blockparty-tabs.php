@@ -30,3 +30,21 @@ function init(): void {
 }
 
 add_action( 'init', __NAMESPACE__ . '\\init' );
+
+/**
+ * Allow aria attributes
+ *
+ * @param $tags
+ *
+ * @return mixed
+ */
+function allow_attributes( $tags, $context ) {
+	if ( 'post' === $context ) {
+		$tags['button']['aria-expanded'] = true;
+        $tags['div']['tabindex']         = true;
+	}
+
+	return $tags;
+}
+
+add_filter( 'wp_kses_allowed_html', __NAMESPACE__ . '\\allow_attributes', 10, 2 );
