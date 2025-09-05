@@ -59,9 +59,13 @@ export default function Edit( {
 					<InnerBlocks
 						allowedBlocks={ allowedTabsIconBlock }
 						__experimentalDirectInsert={ false }
-						templateLock="all"
-						template={ [ [ tabsIconBlock, { width: 24 } ] ] }
+						templateLock={ false }
+						template={ [
+							[ tabsIconBlock, { width: 24, maxIcons: 1 } ],
+						] }
 						templateInsertUpdatesSelection={ false }
+						directInsert={ false }
+						renderAppender={ false }
 					/>
 				) }
 				<RichText
