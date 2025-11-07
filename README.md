@@ -1,3 +1,5 @@
+[![Be API Github Banner](.github/banner-github.png)](https://beapi.fr)
+
 # Blockparty Tabs
 
 An accessible tabs block for WordPress Gutenberg editor that follows ARIA best practices.
