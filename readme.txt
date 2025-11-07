@@ -28,3 +28,25 @@ the /assets directory or the directory that contains the stable readme.txt (tags
 directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
 (or jpg, jpeg, gif).
 2. This is the second screen shot
+
+== Changelog ==
+
+= 1.0.4 =
+
+* Replacement of icon for the icon block
+
+= 1.0.3 =
+
+* fix icon inserter
+
+= 1.0.2 =
+
+* allow aria and tabindex attributes
+
+= 1.0.1 =
+
+* fix tabs scripts
+
+= 1.0.0 =
+
+* Initial release
