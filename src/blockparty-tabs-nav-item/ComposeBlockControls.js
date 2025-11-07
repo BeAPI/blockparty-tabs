@@ -4,7 +4,7 @@ import { withDispatch, withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { createBlock } from '@wordpress/blocks';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
-import iconIcon from './iconIcon';
+import { shapes } from '@beapi/icons';
 
 const ComposeBlockControls = ( {
 	hasIcon,
@@ -40,7 +40,7 @@ const ComposeBlockControls = ( {
 		/>
 		<ToolbarGroup>
 			<ToolbarButton
-				icon={ iconIcon }
+				icon={ shapes }
 				label={ __( 'Icon', 'blockparty-tabs' ) }
 				className={ hasIcon ? 'is-pressed' : '' }
 				isDisabled={ ! hasIconBlock }
