@@ -2,10 +2,9 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "blockparty/tabs",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"title": "Tabs",
 	"category": "widgets",
-	"icon": "table-row-after",
 	"description": "Accessible tabs block",
 	"supports": {
 		"html": false,
