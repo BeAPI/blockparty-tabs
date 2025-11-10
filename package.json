@@ -25,7 +25,7 @@
 		"@wordpress/data": "^9.24.0",
 		"@wordpress/env": "^9.6.0",
 		"@wordpress/i18n": "^4.54.0",
-		"@wordpress/icons": "^9.45.0",
+		"@wordpress/icons": "^11.1.0",
 		"@wordpress/primitives": "^3.52.0",
 		"@wordpress/scripts": "^27.5.0"
 	},

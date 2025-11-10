@@ -4,6 +4,11 @@ import { withDispatch, withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
 import { createBlock } from '@wordpress/blocks';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+import {
+	queryPaginationPrevious,
+	queryPaginationNext,
+	trash,
+} from '@wordpress/icons';
 import { shapes } from '@beapi/icons';
 
 const ComposeBlockControls = ( {
@@ -52,21 +57,21 @@ const ComposeBlockControls = ( {
 		<ToolbarGroup
 			controls={ [
 				{
-					icon: 'table-col-before',
+					icon: queryPaginationPrevious,
 					title: __( 'Add Item Before', 'blockparty-tabs' ),
 					onClick: () => {
 						onInsertBlock( index );
 					},
 				},
 				{
-					icon: 'table-col-after',
+					icon: queryPaginationNext,
 					title: __( 'Add Item After', 'blockparty-tabs' ),
 					onClick: () => {
 						onInsertBlock( index + 1 );
 					},
 				},
 				{
-					icon: 'trash',
+					icon: trash,
 					title: __( 'Delete Item', 'blockparty-tabs' ),
 					onClick: () => {
 						onRemoveBlocks( index );

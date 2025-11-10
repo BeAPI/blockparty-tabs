@@ -5,7 +5,6 @@
 	"version": "1.0.5",
 	"title": "Tabs",
 	"category": "widgets",
-	"icon": "table-row-after",
 	"description": "Accessible tabs block",
 	"supports": {
 		"html": false,

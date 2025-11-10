@@ -5,7 +5,6 @@
 	"version": "1.0.5",
 	"title": "Panels",
 	"category": "widgets",
-	"icon": "category",
 	"description": "Accessible tabs block item",
 	"parent": [ "blockparty/tabs" ],
 	"supports": {
