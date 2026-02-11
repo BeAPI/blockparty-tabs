@@ -18,18 +18,17 @@ class TabsAutomatic {
 		this.firstTab = null;
 		this.lastTab = null;
 
-		this.tabs = Array.from(
-			this.tablistNode.querySelectorAll( '[role=tab]' )
+		this.tabnav = this.tablistNode.querySelector(
+			'.wp-block-blockparty-tabs-nav'
 		);
+		this.tabs = Array.from( this.tabnav.querySelectorAll( 'a[role=tab]' ) );
+		this.tabpanelsNode = this.tabnav.nextElementSibling;
+
 		this.tabpanels = [];
 
 		for ( let i = 0; i < this.tabs.length; i += 1 ) {
 			const tab = this.tabs[ i ];
-			const tabpanel = this.tablistNode
-				.closest( '.wp-block-blockparty-tabs' )
-				.querySelectorAll( '.wp-block-blockparty-tabs-panels > *' )[
-				i
-			];
+			const tabpanel = this.tabpanelsNode.children[ i ];
 
 			tab.tabIndex = -1;
 			tab.setAttribute( 'aria-selected', 'false' );
