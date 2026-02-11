@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "blockparty/tabs-nav-item",
+  "version": "1.0.6",
+  "title": "Tab",
+  "category": "widgets",
+  "description": "Accessible tabs block item",
+  "parent": [
+    "blockparty/tabs-nav"
+  ],
+  "supports": {
+    "html": false,
+    "anchor": false,
+    "align": false,
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "lock": false,
+    "reusable": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "hasIcon": {
+      "type": "boolean",
+      "value": false
+    },
+    "hasFocus": {
+      "type": "boolean",
+      "value": false
+    },
+    "linkId": {
+      "type": "string"
+    },
+    "panelId": {
+      "type": "string"
+    },
+    "index": {
+      "type": "integer"
+    }
+  },
+  "usesContext": [
+    "blockparty/Tabs",
+    "blockparty/TabsActive"
+  ],
+  "textdomain": "blockparty-tabs",
+  "editorScript": "file:./index.js"
+}
