@@ -1,20 +1,20 @@
 /**
-* Syncs the active tab state with the block selection in the editor.
-*
-* When this tab item (nav-item or panel-item) is the one selected or is the
-* closest tab item to the current block selection, updates the parent
-* blockparty/tabs block's tabsActive attribute to this item's index.
-*
-* This direct link (the clicked block updates its own tabs block) ensures
-* correct behavior with nested tabs: only the tabs block that owns the
-* selected tab is updated.
-*
-* @since 1.0.6
-*
-* @param {Object}   props         Component props.
-* @param {string}   props.clientId This block's clientId (tabs-nav-item or tabs-panel-item).
-* @return {null} Renders nothing.
-*/
+ * Syncs the active tab state with the block selection in the editor.
+ *
+ * When this tab item (nav-item or panel-item) is the one selected or is the
+ * closest tab item to the current block selection, updates the parent
+ * blockparty/tabs block's tabsActive attribute to this item's index.
+ *
+ * This direct link (the clicked block updates its own tabs block) ensures
+ * correct behavior with nested tabs: only the tabs block that owns the
+ * selected tab is updated.
+ *
+ * @since 1.0.6
+ *
+ * @param {Object}   props         Component props.
+ * @param {string}   props.clientId This block's clientId (tabs-nav-item or tabs-panel-item).
+ * @return {null} Renders nothing.
+ */
 import { useEffect } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
 
