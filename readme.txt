@@ -31,6 +31,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.0.6 =
+
+* Update view and edit script to allow to use nested tabs block (tabs inside tab panel).
+
 = 1.0.5 =
 
 * Update block icons

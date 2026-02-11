@@ -9,7 +9,6 @@ import {
 } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
 import { select } from '@wordpress/data';
-import TabsFocus from './TabsFocus';
 import {
 	heading,
 	justifyRight,
@@ -119,7 +118,6 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
-			<TabsFocus clientId={ clientId } setAttributes={ setAttributes } />
 			<div { ...innerBlocksProps } />
 		</>
 	);
