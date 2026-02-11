@@ -1,4 +1,4 @@
-/**
+ /**
  * Syncs the active tab state with the block selection in the editor.
  *
  * When this tab item (nav-item or panel-item) is the one selected or is the
