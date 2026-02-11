@@ -98,6 +98,7 @@ export default function SyncTabsActive( { clientId } ) {
 		clientId,
 		tabsBlockId,
 		myIndex,
+		updateBlockAttributes,
 	] );
 
 	return null;
