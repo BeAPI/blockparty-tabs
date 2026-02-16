@@ -1,9 +1,5 @@
 {
 	"plugins": [
-		".",
-		"./.wp-env/plugins/blockparty-icons"
-	],
-	"themes": [
-		"./.wp-env/themes/icon-block-theme"
+		"."
 	]
 }
