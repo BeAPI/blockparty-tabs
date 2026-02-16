@@ -1,6 +1,9 @@
 {
-	"phpVersion": "8.1",
 	"plugins": [
-		"."
+		".",
+		"./.wp-env/plugins/blockparty-icons"
+	],
+	"themes": [
+		"./.wp-env/themes/icon-block-theme"
 	]
 }
