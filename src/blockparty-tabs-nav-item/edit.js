@@ -28,14 +28,12 @@ export default function Edit( {
 			! Array.isArray( supportBlocks ) ||
 			typeof supportBlocks[ 0 ] === 'undefined'
 		) {
-			tabsIconBlock = false;
 			allowedTabsIconBlock = [];
 		} else {
 			// Always include the two supported blocks (parent support + default).
 			allowedTabsIconBlock = [
 				...new Set( [ ...supportBlocks, ...DEFAULT_TABS_ICON_BLOCK ] ),
 			];
-			tabsIconBlock = allowedTabsIconBlock[ 0 ];
 		}
 	}
 	getSynchedID( clientId, context, setAttributes );
