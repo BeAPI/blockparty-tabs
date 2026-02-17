@@ -1,4 +1,4 @@
- /**
+/**
  * Syncs the active tab state with the block selection in the editor.
  *
  * When this tab item (nav-item or panel-item) is the one selected or is the
@@ -11,8 +11,8 @@
  *
  * @since 1.0.6
  *
- * @param {Object}   props         Component props.
- * @param {string}   props.clientId This block's clientId (tabs-nav-item or tabs-panel-item).
+ * @param {Object} props          Component props.
+ * @param {string} props.clientId This block's clientId (tabs-nav-item or tabs-panel-item).
  * @return {null} Renders nothing.
  */
 import { useEffect } from '@wordpress/element';
