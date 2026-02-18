@@ -31,6 +31,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.1.0 =
+
+* Support for `blockparty/icons` block
+
 = 1.0.6 =
 
 * Update view and edit script to allow to use nested tabs block (tabs inside tab panel).
