@@ -13,6 +13,8 @@
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
+		"start:env": "wp-env start",
+		"stop:env": "wp-env stop",
 		"env": "wp-env",
 		"make-pot": "wp i18n make-pot . languages/blockparty-tabs.pot --slug=blockparty-tabs --domain=blockparty-tabs --exclude=node_modules,src",
 		"make-json": "wp i18n make-json languages/ --no-purge"
@@ -23,11 +25,11 @@
 		"@wordpress/components": "^27.2.0",
 		"@wordpress/compose": "^6.31.0",
 		"@wordpress/data": "^9.24.0",
-		"@wordpress/env": "^9.6.0",
+		"@wordpress/env": "^10.39.0",
 		"@wordpress/i18n": "^4.54.0",
-		"@wordpress/icons": "^11.1.0",
+		"@wordpress/icons": "^11.6.0",
 		"@wordpress/primitives": "^3.52.0",
-		"@wordpress/scripts": "^27.5.0"
+		"@wordpress/scripts": "^30.17.0"
 	},
 	"dependencies": {
 		"@beapi/icons": "^1.2.5",
