@@ -47,7 +47,7 @@ const ComposeBlockControls = ( {
 			<ToolbarButton
 				icon={ shapes }
 				label={ __( 'Icon', 'blockparty-tabs' ) }
-				className={ hasIcon ? 'is-pressed' : '' }
+				isPressed={ hasIcon }
 				isDisabled={ ! hasIconBlock }
 				onClick={ () => {
 					setAttributes( { hasIcon: ! hasIcon } );
