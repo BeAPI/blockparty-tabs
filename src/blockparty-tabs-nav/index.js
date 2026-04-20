@@ -2,10 +2,10 @@ import { registerBlockType } from '@wordpress/blocks';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { navigation } from '@beapi/icons';
+import { tabsMenu } from '@wordpress/icons';
 
 registerBlockType( metadata.name, {
-	icon: navigation,
+	icon: tabsMenu,
 
 	/**
 	 * @see ./edit.js

@@ -3,7 +3,7 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { tabs } from '@beapi/icons';
+import { tabs } from '@wordpress/icons';
 
 registerBlockType( metadata.name, {
 	icon: tabs,
