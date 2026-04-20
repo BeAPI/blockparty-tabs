@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update block icons
 - Add WordPress Playground blueprint file
+- Pin Volta toolchain to Node.js 24.15.0 (was 20.12.0)
 
 ## 1.1.0 - 2026-02-18
 
