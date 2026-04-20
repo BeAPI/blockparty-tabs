@@ -2,10 +2,10 @@ import { registerBlockType } from '@wordpress/blocks';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { grid } from '@wordpress/icons';
+import { tab } from '@wordpress/icons';
 
 registerBlockType( metadata.name, {
-	icon: grid,
+	icon: tab,
 	edit: Edit,
 	save,
 } );
