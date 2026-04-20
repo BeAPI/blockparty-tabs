@@ -1,5 +1,7 @@
 [![Be API Github Banner](.github/banner-github.png)](https://beapi.fr)
 
+[![Test with WordPress Playground](https://img.shields.io/badge/Test%20with-WordPress%20Playground-0073aa?style=for-the-badge&logo=wordpress&logoColor=white)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/beapi/blockparty-tabs/refs/heads/main/.wordpress-org/blueprints/blueprint.json)
+
 # Blockparty Tabs
 
 An accessible tabs block for WordPress Gutenberg editor that follows ARIA best practices.
