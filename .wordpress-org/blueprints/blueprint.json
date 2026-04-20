@@ -1,0 +1,32 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/blockparty-tabs-demo/",
+	"preferredVersions": {
+		"php": "8.1",
+		"wp": "latest"
+	},
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/BeAPI/blockparty-tabs",
+				"ref": "1.1.1",
+				"refType": "tag"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "blockparty-tabs"
+			}
+		},
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require_once 'wordpress/wp-load.php'; $page_content = '<!-- wp:blockparty/tabs {\"tabsActive\":1} -->\n<div class=\"wp-block-blockparty-tabs has-align-top-left\" aria-label=\"\" role=\"tablist\"><!-- wp:blockparty/tabs-nav -->\n<ul class=\"wp-block-blockparty-tabs-nav\"><!-- wp:blockparty/tabs-nav-item {\n\t\t\t\t\"label\": \"Item 1\",\n\t\t\t\t\"linkId\": \"block-tab-0-0\",\n\t\t\t\t\"panelId\": \"block-panel-0-0\",\n\t\t\t\t\"index\": 0,\n\t\t\t\t\"lock\": {\n\t\t\t\t\t\"move\": true,\n\t\t\t\t\t\"remove\": true\n\t\t\t\t}\n\t\t\t} -->\n<li class=\"wp-block-blockparty-tabs-nav-item\"><a id=\"block-tab-0-0\" role=\"tab\" aria-controls=\"block-panel-0-0\" class=\"wp-block-blockparty-tabs-nav-link\" href=\"#block-tab-0-0\"><span>Item 1</span></a></li>\n<!-- /wp:blockparty/tabs-nav-item -->\n\n<!-- wp:blockparty/tabs-nav-item {\n\t\t\t\t\"label\": \"Item 2\",\n\t\t\t\t\"linkId\": \"block-tab-0-1\",\n\t\t\t\t\"panelId\": \"block-panel-0-1\",\n\t\t\t\t\"index\": 1,\n\t\t\t\t\"lock\": {\n\t\t\t\t\t\"move\": true,\n\t\t\t\t\t\"remove\": true\n\t\t\t\t}\n\t\t\t} -->\n<li class=\"wp-block-blockparty-tabs-nav-item\"><a id=\"block-tab-0-1\" role=\"tab\" aria-controls=\"block-panel-0-1\" class=\"wp-block-blockparty-tabs-nav-link\" href=\"#block-tab-0-1\"><span>Item 2</span></a></li>\n<!-- /wp:blockparty/tabs-nav-item -->\n\n<!-- wp:blockparty/tabs-nav-item {\n\t\t\t\t\"label\": \"Item 3\",\n\t\t\t\t\"linkId\": \"block-tab-0-2\",\n\t\t\t\t\"panelId\": \"block-panel-0-2\",\n\t\t\t\t\"index\": 2,\n\t\t\t\t\"lock\": {\n\t\t\t\t\t\"move\": true,\n\t\t\t\t\t\"remove\": true\n\t\t\t\t}\n\t\t\t} -->\n<li class=\"wp-block-blockparty-tabs-nav-item\"><a id=\"block-tab-0-2\" role=\"tab\" aria-controls=\"block-panel-0-2\" class=\"wp-block-blockparty-tabs-nav-link\" href=\"#block-tab-0-2\"><span>Item 3</span></a></li>\n<!-- /wp:blockparty/tabs-nav-item --></ul>\n<!-- /wp:blockparty/tabs-nav -->\n\n<!-- wp:blockparty/tabs-panels -->\n<section class=\"wp-block-blockparty-tabs-panels\"><!-- wp:blockparty/tabs-panel-item {\n\t\t\t\t\"linkId\": \"block-tab-0-0\",\n\t\t\t\t\"panelId\": \"block-panel-0-0\",\n\t\t\t\t\"index\": 0,\n\t\t\t\t\"lock\": {\n\t\t\t\t\t\"move\": true,\n\t\t\t\t\t\"remove\": true\n\t\t\t\t}\n\t\t\t} -->\n<div role=\"tabpanel\" tabindex=\"0\" class=\"wp-block-blockparty-tabs-panel-item\" id=\"block-panel-0-0\" aria-labelledby=\"block-tab-0-0\"><div class=\"wp-block-blockparty-tabs-panel-item__inner\"><!-- wp:paragraph -->\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<!-- /wp:paragraph --></div></div>\n<!-- /wp:blockparty/tabs-panel-item -->\n\n<!-- wp:blockparty/tabs-panel-item {\n\t\t\t\t\"linkId\": \"block-tab-0-1\",\n\t\t\t\t\"panelId\": \"block-panel-0-1\",\n\t\t\t\t\"index\": 1,\n\t\t\t\t\"lock\": {\n\t\t\t\t\t\"move\": true,\n\t\t\t\t\t\"remove\": true\n\t\t\t\t}\n\t\t\t} -->\n<div role=\"tabpanel\" tabindex=\"0\" class=\"wp-block-blockparty-tabs-panel-item\" id=\"block-panel-0-1\" aria-labelledby=\"block-tab-0-1\"><div class=\"wp-block-blockparty-tabs-panel-item__inner\"><!-- wp:paragraph -->\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<!-- /wp:paragraph --></div></div>\n<!-- /wp:blockparty/tabs-panel-item -->\n\n<!-- wp:blockparty/tabs-panel-item {\n\t\t\t\t\"linkId\": \"block-tab-0-2\",\n\t\t\t\t\"panelId\": \"block-panel-0-2\",\n\t\t\t\t\"index\": 2,\n\t\t\t\t\"lock\": {\n\t\t\t\t\t\"move\": true,\n\t\t\t\t\t\"remove\": true\n\t\t\t\t}\n\t\t\t} -->\n<div role=\"tabpanel\" tabindex=\"0\" class=\"wp-block-blockparty-tabs-panel-item\" id=\"block-panel-0-2\" aria-labelledby=\"block-tab-0-2\"><div class=\"wp-block-blockparty-tabs-panel-item__inner\"><!-- wp:paragraph -->\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<!-- /wp:paragraph --></div></div>\n<!-- /wp:blockparty/tabs-panel-item --></section>\n<!-- /wp:blockparty/tabs-panels --></div>\n<!-- /wp:blockparty/tabs -->'; $page_id = wp_insert_post( array( 'post_title' => 'Blockparty Tabs', 'post_name' => 'blockparty-tabs-demo', 'post_content' => $page_content, 'post_status' => 'publish', 'post_type' => 'page' ) ); echo 'Page created with ID: ' . $page_id; ?>"
+		}
+	]
+}
