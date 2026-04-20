@@ -2,11 +2,13 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "blockparty/tabs-nav-item",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"title": "Tab",
 	"category": "widgets",
 	"description": "Accessible tabs block item",
-	"parent": [ "blockparty/tabs-nav" ],
+	"parent": [
+		"blockparty/tabs-nav"
+	],
 	"supports": {
 		"html": false,
 		"anchor": false,
@@ -40,7 +42,10 @@
 			"type": "integer"
 		}
 	},
-	"usesContext": [ "blockparty/Tabs", "blockparty/TabsActive" ],
+	"usesContext": [
+		"blockparty/Tabs",
+		"blockparty/TabsActive"
+	],
 	"textdomain": "blockparty-tabs",
 	"editorScript": "file:./index.js"
 }

@@ -2,14 +2,17 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "blockparty/tabs",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"title": "Tabs",
 	"category": "widgets",
 	"description": "Accessible tabs block",
 	"supports": {
 		"html": false,
 		"anchor": true,
-		"align": [ "wide", "full" ]
+		"align": [
+			"wide",
+			"full"
+		]
 	},
 	"attributes": {
 		"tabsIndex": {
