@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.1.1 - 2026-04-20
+
+- Update block icons
+- Add WordPress Playground blueprint file
+- Pin Volta toolchain to Node.js 24.15.0 (was 20.12.0)
+
 ## 1.1.0 - 2026-02-18
 
 - Support for `blockparty/icons` block

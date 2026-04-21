@@ -2,11 +2,13 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "blockparty/tabs-nav",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"title": "Tabs list",
 	"category": "widgets",
 	"description": "Accessible tabs block item",
-	"parent": [ "blockparty/tabs" ],
+	"parent": [
+		"blockparty/tabs"
+	],
 	"supports": {
 		"html": false,
 		"anchor": false,
@@ -14,7 +16,9 @@
 		"lock": false,
 		"reusable": false
 	},
-	"usesContext": [ "blockparty/Tabs" ],
+	"usesContext": [
+		"blockparty/Tabs"
+	],
 	"textdomain": "blockparty-tabs",
 	"editorScript": "file:./index.js"
 }
