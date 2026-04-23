@@ -8,6 +8,8 @@
     --wp--blockparty--tabs--nav-border-active: 4px solid #000;
     --wp--blockparty--tabs--icon-size: 24px;
     --wp--blockparty--tabs--active-color: #efefef;
+    --wp--blockparty--tabs--sidebar-nav-width: 33.33333%;
+    --wp--blockparty--tabs--sidebar-panel-width: 66.66666%;
 
     $block: &;
 
@@ -116,7 +118,7 @@
                 flex-wrap: wrap;
             }
             > #{$block}-panels {
-                #{$block}-panel-item {
+                > #{$block}-panel-item {
                     height: 100%;
                     border-top: 0;
                 }
@@ -124,7 +126,7 @@
         }
         &.has-align-sidebar-left {
             > #{$block}-nav {
-                flex: 1 1 33.33333%;
+                flex: 1 1 var(--wp--blockparty--tabs--sidebar-nav-width);
 
                 > #{$block}-nav-item {
                     &:hover,
@@ -153,7 +155,7 @@
         }
         &.has-align-sidebar-right {
             > #{$block}-nav {
-                flex: 1 1 33.33333%;
+                flex: 1 1 var(--wp--blockparty--tabs--sidebar-nav-width);
                 order: 2;
                 > #{$block}-nav-item {
                     &:hover,
@@ -173,7 +175,7 @@
                 }
             }
             > #{$block}-panels {
-                flex: 1 1 66.66666%;
+                flex: 1 1 var(--wp--blockparty--tabs--sidebar-panel-width);
                 align-self: stretch;
                 order: 1;
                 > #{$block}-panel-item {

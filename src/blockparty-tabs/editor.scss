@@ -1,6 +1,8 @@
 /* editor */
 .wp-block-blockparty-tabs {
 
+    $block: &;
+
     .editor-styles-wrapper & [data-block] {
         margin: 0;
     }
@@ -64,17 +66,17 @@
         }
     }
 
-    .has-align-sidebar-right > &,
-    .has-align-sidebar-left > & {
+    &.has-align-sidebar-right,
+    &.has-align-sidebar-left {
 
-        &-panel-item {
-
-            &.is-active {
-                display: flex;
-            }
-
-            &.has-child-selected {
-                display: flex;
+        > #{$block}-panels {
+            > #{$block}-panel-item {
+                &.is-active {
+                    display: block;
+                }
+                &.has-child-selected {
+                    display: flex;
+                }
             }
         }
     }
