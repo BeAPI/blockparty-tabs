@@ -97,55 +97,40 @@
 
     @media screen and (min-width: 782px) {
 
+        &-panel {
+            &-item {
+                &.is-hidden {
+                    display: none;
+                }
+            }
+        }
+
+        &.has-align-top-right {
+            > #{$block}-nav {
+                justify-content: end;
+            }
+        }
+
         &.has-align-sidebar-left,
         &.has-align-sidebar-right {
             display: flex;
             align-items: stretch;
             align-items: flex-start;
-        }
-
-        &-nav {
-
-            .has-align-top-right & {
-                justify-content: end;
-            }
-
-            .has-align-sidebar-left &,
-            .has-align-sidebar-right & {
+            > #{$block}-nav {
                 flex-wrap: wrap;
             }
-
-            .has-align-sidebar-left & {
-                flex: 1 1 33.33333%;
-            }
-
-            .has-align-sidebar-right & {
-                flex: 1 1 33.33333%;
-                order: 2;
-            }
-
-            &-item {
-
-                .has-align-sidebar-right & {
-
-                    &:hover,
-                    &:focus-within {
-                        border-bottom: 0;
-                        border-left: var(--wp--blockparty--tabs--nav-border-hover);
-                    }
-
-                    &.is-active {
-                        border-bottom: 0;
-                        border-left: var(--wp--blockparty--tabs--nav-border-active);
-                    }
-
-                    width: 100%;
-                    border-bottom: 0;
-                    border-left: var(--wp--blockparty--tabs--nav-border);
+            > #{$block}-panels {
+                #{$block}-panel-item {
+                    height: 100%;
+                    border-top: 0;
                 }
+            }
+        }
+        &.has-align-sidebar-left{
+            > #{$block}-nav {
+                flex: 1 1 33.33333%;
 
-                .has-align-sidebar-left & {
-
+                > #{$block}-nav-item {
                     &:hover,
                     &:focus-within {
                         border-right: var(--wp--blockparty--tabs--nav-border-hover);
@@ -161,46 +146,45 @@
                     border-right: var(--wp--blockparty--tabs--nav-border);
                     border-bottom: 0;
                 }
-
             }
+           > #{$block}-panels {
+            flex: 1 1 66.66666%;
+                align-self: stretch;
+                > #{$block}-panel-item {
+                    border-left: var(--wp--blockparty--tabs--panel-border);
+                }
+           }
         }
+        &.has-align-sidebar-right {
+           > #{$block}-nav {
+                flex: 1 1 33.33333%;
+                order: 2;
+                 > #{$block}-nav-item {
+                    &:hover,
+                    &:focus-within {
+                        border-bottom: 0;
+                        border-left: var(--wp--blockparty--tabs--nav-border-hover);
+                    }
 
-        &-panels {
+                    &.is-active {
+                        border-bottom: 0;
+                        border-left: var(--wp--blockparty--tabs--nav-border-active);
+                    }
 
-            .has-align-sidebar-right & {
+                    width: 100%;
+                    border-bottom: 0;
+                    border-left: var(--wp--blockparty--tabs--nav-border);
+                }
+            }
+            > #{$block}-panels {
                 flex: 1 1 66.66666%;
                 align-self: stretch;
                 order: 1;
-            }
-
-            .has-align-sidebar-left & {
-                flex: 1 1 66.66666%;
-                align-self: stretch;
-            }
-        }
-
-        &-panel {
-
-            &-item {
-
-                &.is-hidden {
-                    display: none;
-                }
-
-                .has-align-sidebar-left &,
-                .has-align-sidebar-right & {
-                    height: 100%;
-                    border-top: 0;
-                }
-
-                .has-align-sidebar-left & {
-                    border-left: var(--wp--blockparty--tabs--panel-border);
-                }
-
-                .has-align-sidebar-right & {
+                > #{$block}-panel-item {
                     border-right: var(--wp--blockparty--tabs--panel-border);
                 }
             }
         }
+
     }
 }
