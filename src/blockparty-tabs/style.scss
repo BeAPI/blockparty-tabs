@@ -110,23 +110,23 @@
                 justify-content: end;
             }
 
-            .has-align-sidebar-left &,
-            .has-align-sidebar-right & {
+            .has-align-sidebar-left > &,
+            .has-align-sidebar-right > & {
                 flex-wrap: wrap;
             }
 
-            .has-align-sidebar-left & {
+            .has-align-sidebar-left > & {
                 flex: 1 1 33.33333%;
             }
 
-            .has-align-sidebar-right & {
+            .has-align-sidebar-right > & {
                 flex: 1 1 33.33333%;
                 order: 2;
             }
 
             &-item {
 
-                .has-align-sidebar-right & {
+                .has-align-sidebar-right > & {
 
                     &:hover,
                     &:focus-within {
@@ -144,7 +144,7 @@
                     border-left: var(--wp--blockparty--tabs--nav-border);
                 }
 
-                .has-align-sidebar-left & {
+                .has-align-sidebar-left > & {
 
                     &:hover,
                     &:focus-within {
@@ -167,13 +167,13 @@
 
         &-panels {
 
-            .has-align-sidebar-right & {
+            .has-align-sidebar-right > & {
                 flex: 1 1 66.66666%;
                 align-self: stretch;
                 order: 1;
             }
 
-            .has-align-sidebar-left & {
+            .has-align-sidebar-left > & {
                 flex: 1 1 66.66666%;
                 align-self: stretch;
             }
@@ -187,17 +187,17 @@
                     display: none;
                 }
 
-                .has-align-sidebar-left &,
-                .has-align-sidebar-right & {
+                .has-align-sidebar-left > &,
+                .has-align-sidebar-right > & {
                     height: 100%;
                     border-top: 0;
                 }
 
-                .has-align-sidebar-left & {
+                .has-align-sidebar-left > & {
                     border-left: var(--wp--blockparty--tabs--panel-border);
                 }
 
-                .has-align-sidebar-right & {
+                .has-align-sidebar-right > & {
                     border-right: var(--wp--blockparty--tabs--panel-border);
                 }
             }
