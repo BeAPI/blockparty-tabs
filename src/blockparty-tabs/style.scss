@@ -146,7 +146,7 @@
                 }
             }
             > #{$block}-panels {
-                flex: 1 1 66.66666%;
+                flex: 1 1 var(--wp--blockparty--tabs--sidebar-panel-width);
                 align-self: stretch;
                 > #{$block}-panel-item {
                     border-left: var(--wp--blockparty--tabs--panel-border);
