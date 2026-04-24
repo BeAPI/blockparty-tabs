@@ -2,7 +2,7 @@
 Contributors:      Be API Technical team
 Tags:              block
 Tested up to:      6.0
-Stable tag:        1.1.1
+Stable tag:        1.1.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 1.1.2 =
+
+* Fix css for nested tabs block
 
 = 1.1.1 =
 
