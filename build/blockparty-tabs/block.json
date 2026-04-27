@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "blockparty/tabs",
+  "version": "1.1.3",
+  "title": "Tabs",
+  "category": "widgets",
+  "description": "Accessible tabs block",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "tabsIndex": {
+      "type": "integer",
+      "default": 0
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "tabsActive": {
+      "type": "integer",
+      "default": 0
+    },
+    "mode": {
+      "type": "string",
+      "default": "top-left"
+    }
+  },
+  "providesContext": {
+    "blockparty/Tabs": "tabsIndex",
+    "blockparty/TabsActive": "tabsActive"
+  },
+  "textdomain": "blockparty-tabs",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./script.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
