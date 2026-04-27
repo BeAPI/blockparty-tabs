@@ -2,8 +2,6 @@ import classnames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import getSynchedID from '../blockparty-tabs/GetSynchedID';
-import SyncTabsActive from '../blockparty-tabs/SyncTabsActive';
-
 export default function Edit( {
 	setAttributes,
 	clientId,
@@ -47,7 +45,6 @@ export default function Edit( {
 
 	return (
 		<div { ...blockProps }>
-			<SyncTabsActive clientId={ clientId } />
 			<InnerBlocks
 				allowedBlocks={ allowedBlocks }
 				templateLock={ false }

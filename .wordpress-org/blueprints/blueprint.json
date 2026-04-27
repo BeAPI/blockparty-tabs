@@ -11,7 +11,7 @@
 			"pluginData": {
 				"resource": "git:directory",
 				"url": "https://github.com/BeAPI/blockparty-tabs",
-				"ref": "1.1.2",
+				"ref": "1.1.3",
 				"refType": "tag"
 			},
 			"options": {
