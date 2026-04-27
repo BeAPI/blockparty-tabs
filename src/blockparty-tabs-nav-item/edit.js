@@ -5,8 +5,6 @@ import { getBlockType } from '@wordpress/blocks';
 import { select } from '@wordpress/data';
 import ComposeBlockControls from './ComposeBlockControls';
 import getSynchedID from '../blockparty-tabs/GetSynchedID';
-import SyncTabsActive from '../blockparty-tabs/SyncTabsActive';
-
 export default function Edit( {
 	attributes,
 	setAttributes,
@@ -53,7 +51,6 @@ export default function Edit( {
 
 	return (
 		<>
-			<SyncTabsActive clientId={ clientId } />
 			<ComposeBlockControls
 				clientId={ clientId }
 				index={ index }

@@ -19,6 +19,7 @@ import {
 	justifySpaceBetween,
 } from '@wordpress/icons';
 import './editor.scss';
+import { useSyncTabsActiveForTabsBlock } from './SyncTabsActive';
 
 const DEFAULT_TABS_POSITIONS = [
 	{
@@ -60,6 +61,7 @@ const setTabsIndex = ( setAttributes, clientId ) => {
 };
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
+	useSyncTabsActiveForTabsBlock( clientId );
 	setTabsIndex( setAttributes, clientId );
 	const { title, mode } = attributes;
 	const blockProps = useBlockProps( {
