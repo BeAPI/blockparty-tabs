@@ -31,6 +31,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.1.3 =
+
+* Performance improvements
+
 = 1.1.2 =
 
 * Fix css for nested tabs block
