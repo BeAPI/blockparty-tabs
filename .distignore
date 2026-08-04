@@ -3,6 +3,7 @@
 /.wordpress-org
 /node_modules
 /src
+/scripts
 
 .distignore
 .editorconfig
