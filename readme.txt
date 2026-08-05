@@ -33,7 +33,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 = 1.1.4 =
 
-* Performance improvements removed script blocking time. To allow the tabs to be loaded immediately.
+* Performance improvements removed script blocking time.
 
 = 1.1.3 =
 

@@ -84,27 +84,36 @@ The plugin generates semantic HTML with proper ARIA attributes:
 
 ```html
 <div class="wp-block-blockparty-tabs" role="tablist">
-  <ul class="wp-block-blockparty-tabs-nav">
-    <li class="wp-block-blockparty-tabs-nav-item is-active">
-      <a id="block-tab-0-0" role="tab" aria-controls="block-panel-0-0"
-         class="wp-block-blockparty-tabs-nav-link" href="#block-tab-0-0"
-         aria-selected="true">
-        <span>Tab 1</span>
-      </a>
-    </li>
-    <!-- More tabs... -->
-  </ul>
+	<ul class="wp-block-blockparty-tabs-nav">
+		<li class="wp-block-blockparty-tabs-nav-item is-active">
+			<a
+				id="block-tab-0-0"
+				role="tab"
+				aria-controls="block-panel-0-0"
+				class="wp-block-blockparty-tabs-nav-link"
+				href="#block-tab-0-0"
+				aria-selected="true"
+			>
+				<span>Tab 1</span>
+			</a>
+		</li>
+		<!-- More tabs... -->
+	</ul>
 
-  <section class="wp-block-blockparty-tabs-panels">
-    <div role="tabpanel" tabindex="0"
-         class="wp-block-blockparty-tabs-panel-item is-active"
-         id="block-panel-0-0" aria-labelledby="block-tab-0-0">
-      <div class="wp-block-blockparty-tabs-panel-item__inner">
-        <!-- Your content here -->
-      </div>
-    </div>
-    <!-- More panels... -->
-  </section>
+	<section class="wp-block-blockparty-tabs-panels">
+		<div
+			role="tabpanel"
+			tabindex="0"
+			class="wp-block-blockparty-tabs-panel-item is-active"
+			id="block-panel-0-0"
+			aria-labelledby="block-tab-0-0"
+		>
+			<div class="wp-block-blockparty-tabs-panel-item__inner">
+				<!-- Your content here -->
+			</div>
+		</div>
+		<!-- More panels... -->
+	</section>
 </div>
 ```
 
@@ -134,9 +143,11 @@ npm run lint:css
 
 For bug reports and feature requests, please use the [GitHub issues](https://github.com/BeAPI/blockparty-tabs/issues) page.
 
-## Credits
+## Changelog
 
-Developed by [Be API Technical Team](https://beapi.fr)
+See [readme.txt](readme.txt) and [CHANGELOG.md](CHANGELOG.md) for the full version history.
+
+Developed with ❤️ by [Be API](https://beapi.fr)
 
 ## License
 
