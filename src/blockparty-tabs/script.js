@@ -136,11 +136,22 @@ class TabsAutomatic {
 	}
 }
 
-// Initialize tablist
-
-window.addEventListener( 'load', function () {
+/**
+ * Initialize all tablist widgets on the page.
+ *
+ * @since 1.0.0
+ * @return {void}
+ */
+function initTabs() {
 	const tablists = document.querySelectorAll( '.wp-block-blockparty-tabs' );
 	for ( let i = 0; i < tablists.length; i++ ) {
 		new TabsAutomatic( tablists[ i ] );
 	}
-} );
+}
+
+// Deferred scripts run after HTML is parsed; init immediately when ready.
+if ( document.readyState === 'loading' ) {
+	document.addEventListener( 'DOMContentLoaded', initTabs );
+} else {
+	initTabs();
+}
