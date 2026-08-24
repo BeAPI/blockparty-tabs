@@ -3,10 +3,6 @@
 
     $block: &;
 
-    .editor-styles-wrapper & [data-block] {
-        margin: 0;
-    }
-
     &-nav {
 
         &[data-block],
