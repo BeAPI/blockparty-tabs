@@ -2,24 +2,18 @@ import { __ } from '@wordpress/i18n';
 import { BlockControls } from '@wordpress/block-editor';
 import { withDispatch, withSelect } from '@wordpress/data';
 import { compose } from '@wordpress/compose';
-import { createBlock } from '@wordpress/blocks';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
-import {
-	queryPaginationPrevious,
-	queryPaginationNext,
-	trash,
-} from '@wordpress/icons';
 import { shapes } from '@beapi/icons';
+import { TabsAddRemoveToolbar } from '../blockparty-tabs/TabsAddRemoveControls';
 
 const ComposeBlockControls = ( {
+	clientId,
 	hasIcon,
 	hasIconBlock,
 	index,
 	count,
 	onMoveDown,
 	onMoveUp,
-	onRemoveBlocks,
-	onInsertBlock,
 	setAttributes,
 } ) => (
 	<BlockControls key="toolbar">
@@ -27,7 +21,7 @@ const ComposeBlockControls = ( {
 			controls={ [
 				{
 					icon: 'arrow-left-alt2',
-					title: __( 'Move Item Before', 'blockparty-tabs' ),
+					title: __( 'Move tab before', 'blockparty-tabs' ),
 					isDisabled: 0 === index,
 					onClick: () => {
 						onMoveUp( index );
@@ -35,7 +29,7 @@ const ComposeBlockControls = ( {
 				},
 				{
 					icon: 'arrow-right-alt2',
-					title: __( 'Move Item After', 'blockparty-tabs' ),
+					title: __( 'Move tab after', 'blockparty-tabs' ),
 					isDisabled: count === index + 1,
 					onClick: () => {
 						onMoveDown( index );
@@ -54,31 +48,7 @@ const ComposeBlockControls = ( {
 				} }
 			/>
 		</ToolbarGroup>
-		<ToolbarGroup
-			controls={ [
-				{
-					icon: queryPaginationPrevious,
-					title: __( 'Add Item Before', 'blockparty-tabs' ),
-					onClick: () => {
-						onInsertBlock( index );
-					},
-				},
-				{
-					icon: queryPaginationNext,
-					title: __( 'Add Item After', 'blockparty-tabs' ),
-					onClick: () => {
-						onInsertBlock( index + 1 );
-					},
-				},
-				{
-					icon: trash,
-					title: __( 'Delete Item', 'blockparty-tabs' ),
-					onClick: () => {
-						onRemoveBlocks( index );
-					},
-				},
-			] }
-		/>
+		<TabsAddRemoveToolbar clientId={ clientId } index={ index } />
 	</BlockControls>
 );
 
@@ -105,14 +75,8 @@ export default compose( [
 		};
 	} ),
 	withDispatch( ( dispatch, { nav, navId, panels, panelId } ) => {
-		const {
-			removeBlock,
-			moveBlocksDown,
-			moveBlocksUp,
-			insertBlock,
-			updateBlockAttributes,
-		} = dispatch( 'core/block-editor' );
-		const LOCK_TEMPLATE = { lock: { move: true, remove: true } };
+		const { moveBlocksDown, moveBlocksUp, updateBlockAttributes } =
+			dispatch( 'core/block-editor' );
 		return {
 			onMoveDown( index ) {
 				updateBlockAttributes( [ nav[ index ], panels[ index ] ], {
@@ -133,25 +97,6 @@ export default compose( [
 				updateBlockAttributes( [ nav[ index ], panels[ index ] ], {
 					lock: { move: true, remove: true },
 				} );
-			},
-			onRemoveBlocks( index ) {
-				updateBlockAttributes( [ nav[ index ], panels[ index ] ], {
-					lock: { move: true, remove: false },
-				} );
-				removeBlock( panels[ index ] );
-				removeBlock( nav[ index ] );
-			},
-			onInsertBlock( index ) {
-				const newNavItem = createBlock(
-					'blockparty/tabs-nav-item',
-					LOCK_TEMPLATE
-				);
-				const newPanelItem = createBlock(
-					'blockparty/tabs-panel-item',
-					LOCK_TEMPLATE
-				);
-				insertBlock( newPanelItem, index, panelId );
-				insertBlock( newNavItem, index, navId );
 			},
 		};
 	} ),
