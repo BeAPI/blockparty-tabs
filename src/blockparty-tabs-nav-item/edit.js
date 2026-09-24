@@ -5,6 +5,7 @@ import { getBlockType } from '@wordpress/blocks';
 import { select } from '@wordpress/data';
 import ComposeBlockControls from './ComposeBlockControls';
 import getSynchedID from '../blockparty-tabs/GetSynchedID';
+
 export default function Edit( {
 	attributes,
 	setAttributes,
@@ -41,11 +42,12 @@ export default function Edit( {
 	);
 	const hasIconBlock = registeredIconBlocks.length > 0;
 	const templateIconBlock = registeredIconBlocks[ 0 ];
-	const { hasIcon, label, index } = attributes;
-	const TabsActive = context[ 'blockparty/TabsActive' ];
+	const { hasIcon, label, index, panelId, linkId } = attributes;
+	const tabsActive = context?.[ 'blockparty/TabsActive' ];
+	const isSelected = tabsActive === index;
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			'is-active': TabsActive === index,
+			'is-active': isSelected,
 		} ),
 	} );
 
@@ -59,32 +61,48 @@ export default function Edit( {
 				setAttributes={ setAttributes }
 			/>
 			<li { ...blockProps }>
-				{ hasIcon && hasIconBlock && (
-					<InnerBlocks
-						allowedBlocks={ registeredIconBlocks }
-						__experimentalDirectInsert={ false }
-						templateLock={ false }
-						template={ [
-							[ templateIconBlock, { width: 24, maxIcons: 1 } ],
-						] }
-						templateInsertUpdatesSelection={ false }
-						directInsert={ false }
-						renderAppender={ false }
-					/>
-				) }
-				<RichText
-					tagName="span"
-					allowedFormats={ [
-						'core/image',
-						'core/italic',
-						'core/bold',
-					] }
-					value={ label }
-					placeholder={ __( 'Item…', 'blockparty-tabs' ) }
-					onChange={ ( content ) => {
-						setAttributes( { label: content } );
+				<a
+					id={ linkId }
+					role="tab"
+					aria-controls={ panelId }
+					aria-selected={ isSelected }
+					tabIndex={ isSelected ? undefined : -1 }
+					className="wp-block-blockparty-tabs-nav-link"
+					href={ linkId ? `#${ linkId }` : '#' }
+					onClick={ ( event ) => {
+						event.preventDefault();
 					} }
-				/>
+				>
+					{ hasIcon && hasIconBlock && (
+						<InnerBlocks
+							allowedBlocks={ registeredIconBlocks }
+							__experimentalDirectInsert={ false }
+							templateLock={ false }
+							template={ [
+								[
+									templateIconBlock,
+									{ width: 24, maxIcons: 1 },
+								],
+							] }
+							templateInsertUpdatesSelection={ false }
+							directInsert={ false }
+							renderAppender={ false }
+						/>
+					) }
+					<RichText
+						tagName="span"
+						allowedFormats={ [
+							'core/image',
+							'core/italic',
+							'core/bold',
+						] }
+						value={ label }
+						placeholder={ __( 'Item…', 'blockparty-tabs' ) }
+						onChange={ ( content ) => {
+							setAttributes( { label: content } );
+						} }
+					/>
+				</a>
 			</li>
 		</>
 	);

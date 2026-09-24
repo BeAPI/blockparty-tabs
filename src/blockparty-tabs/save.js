@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { title, mode } = attributes;
+	const { mode } = attributes;
 
 	const innerBlocksProps = useInnerBlocksProps.save(
 		useBlockProps.save( {
@@ -11,5 +11,6 @@ export default function save( { attributes } ) {
 			} ),
 		} )
 	);
-	return <div { ...innerBlocksProps } aria-label={ title } role="tablist" />;
+
+	return <div { ...innerBlocksProps } />;
 }
