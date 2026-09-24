@@ -1,10 +1,12 @@
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
-import { getBlockType } from '@wordpress/blocks';
-import { select } from '@wordpress/data';
 import ComposeBlockControls from './ComposeBlockControls';
 import getSynchedID from '../blockparty-tabs/GetSynchedID';
+import {
+	getIconTemplateAttributes,
+	getRegisteredIconBlocks,
+} from './getAllowedIconBlocks';
 
 export default function Edit( {
 	attributes,
@@ -12,34 +14,9 @@ export default function Edit( {
 	clientId,
 	context,
 } ) {
-	const DEFAULT_TABS_ICON_BLOCK = [ 'beapi/icon-block', 'blockparty/icon' ];
-	let allowedTabsIconBlock = DEFAULT_TABS_ICON_BLOCK;
-	const hasSupport = select( 'core/blocks' ).hasBlockSupport(
-		'blockparty/tabs',
-		'tabsIconBlock'
-	);
-	if ( hasSupport ) {
-		const supportBlocks = select( 'core/blocks' ).getBlockSupport(
-			'blockparty/tabs',
-			'tabsIconBlock'
-		);
-		if (
-			! Array.isArray( supportBlocks ) ||
-			typeof supportBlocks[ 0 ] === 'undefined'
-		) {
-			allowedTabsIconBlock = [];
-		} else {
-			// Always include the two supported blocks (parent support + default).
-			allowedTabsIconBlock = [
-				...new Set( [ ...supportBlocks, ...DEFAULT_TABS_ICON_BLOCK ] ),
-			];
-		}
-	}
 	getSynchedID( clientId, context, setAttributes );
-	// Keep only the actually registered blocks (active).
-	const registeredIconBlocks = allowedTabsIconBlock.filter(
-		( blockName ) => typeof getBlockType( blockName ) !== 'undefined'
-	);
+
+	const registeredIconBlocks = getRegisteredIconBlocks();
 	const hasIconBlock = registeredIconBlocks.length > 0;
 	const templateIconBlock = registeredIconBlocks[ 0 ];
 	const { hasIcon, label, index, panelId, linkId } = attributes;
@@ -77,11 +54,19 @@ export default function Edit( {
 						<InnerBlocks
 							allowedBlocks={ registeredIconBlocks }
 							__experimentalDirectInsert={ false }
-							templateLock={ false }
+							templateLock="insert"
 							template={ [
 								[
 									templateIconBlock,
-									{ width: 24, maxIcons: 1 },
+									{
+										...getIconTemplateAttributes(
+											templateIconBlock
+										),
+										lock: {
+											move: true,
+											remove: true,
+										},
+									},
 								],
 							] }
 							templateInsertUpdatesSelection={ false }
