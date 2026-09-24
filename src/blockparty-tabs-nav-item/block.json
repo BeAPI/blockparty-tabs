@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "blockparty/tabs-nav-item",
-	"version": "1.1.5",
+	"version": "2.0.0",
 	"title": "Tab",
 	"category": "widgets",
 	"description": "A single tab button used to switch to its matching content panel.",
