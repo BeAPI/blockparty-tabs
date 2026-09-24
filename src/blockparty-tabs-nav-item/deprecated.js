@@ -34,6 +34,10 @@ const v1 = {
 		html: false,
 		visibility: false,
 		lock: false,
+		color: {
+			background: true,
+			text: true,
+		},
 	},
 	save( { attributes } ) {
 		const { hasIcon, label, panelId, linkId } = attributes;

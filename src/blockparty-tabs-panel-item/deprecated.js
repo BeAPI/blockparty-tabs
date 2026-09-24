@@ -22,6 +22,10 @@ const v1 = {
 	supports: {
 		html: false,
 		visibility: false,
+		color: {
+			background: true,
+			text: true,
+		},
 	},
 	save( { attributes } ) {
 		const { panelId, linkId } = attributes;
