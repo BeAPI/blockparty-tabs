@@ -4,9 +4,10 @@
 
 import { __ } from '@wordpress/i18n';
 import { BlockControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+import { ToolbarGroup, ToolbarButton, Button } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
+import { plus } from '@wordpress/icons';
 
 const TABS_BLOCK_NAME = 'blockparty/tabs';
 const LOCK_TEMPLATE = { lock: { move: true, remove: true } };
@@ -38,14 +39,13 @@ function getTabsRootClientId( selectStore, clientId ) {
 }
 
 /**
- * Toolbar group with Add tab / Remove tab buttons.
+ * Hook exposing insert / remove / append helpers for a tabs tree.
  *
- * @param {Object} props          Component props.
- * @param {string} props.clientId Block clientId (any block in the tabs tree).
- * @param {number} [props.index]  Explicit tab index; falls back to tabsActive.
- * @return {JSX.Element|null} Toolbar group, or null when the tabs root is missing.
+ * @param {string} clientId Block clientId (any block in the tabs tree).
+ * @param {number} [index]  Explicit tab index; falls back to tabsActive.
+ * @return {Object} Tabs mutation helpers and resolved state.
  */
-export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
+export const useTabsMutations = ( clientId, index ) => {
 	const { navId, panelId, nav, panels, count, resolvedIndex } = useSelect(
 		( selectStore ) => {
 			const { getBlockOrder, getBlockAttributes } =
@@ -83,12 +83,11 @@ export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
 	const { removeBlock, insertBlock, updateBlockAttributes } =
 		useDispatch( 'core/block-editor' );
 
-	if ( ! navId || ! panelId ) {
-		return null;
-	}
+	const insertTab = ( insertAt ) => {
+		if ( ! navId || ! panelId ) {
+			return;
+		}
 
-	const onInsertBlock = () => {
-		const insertAt = resolvedIndex + 1;
 		const newNavItem = createBlock(
 			'blockparty/tabs-nav-item',
 			LOCK_TEMPLATE
@@ -97,11 +96,23 @@ export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
 			'blockparty/tabs-panel-item',
 			LOCK_TEMPLATE
 		);
-		insertBlock( newPanelItem, insertAt, panelId );
-		insertBlock( newNavItem, insertAt, navId );
+		insertBlock( newPanelItem, insertAt, panelId, false );
+		insertBlock( newNavItem, insertAt, navId, true );
 	};
 
-	const onRemoveBlocks = () => {
+	const insertTabAfterActive = () => {
+		insertTab( resolvedIndex + 1 );
+	};
+
+	const appendTab = () => {
+		insertTab( count );
+	};
+
+	const removeTab = () => {
+		if ( ! navId || ! panelId || 1 >= count ) {
+			return;
+		}
+
 		updateBlockAttributes(
 			[ nav[ resolvedIndex ], panels[ resolvedIndex ] ],
 			{
@@ -112,15 +123,59 @@ export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
 		removeBlock( nav[ resolvedIndex ] );
 	};
 
+	return {
+		count,
+		resolvedIndex,
+		canRemove: 1 < count,
+		insertTabAfterActive,
+		appendTab,
+		removeTab,
+	};
+};
+
+/**
+ * Toolbar group with Add tab / Remove tab buttons.
+ *
+ * @param {Object} props          Component props.
+ * @param {string} props.clientId Block clientId (any block in the tabs tree).
+ * @param {number} [props.index]  Explicit tab index; falls back to tabsActive.
+ * @return {JSX.Element} Toolbar group.
+ */
+export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
+	const { canRemove, insertTabAfterActive, removeTab } = useTabsMutations(
+		clientId,
+		index
+	);
+
 	return (
 		<ToolbarGroup>
-			<ToolbarButton onClick={ onInsertBlock }>
+			<ToolbarButton onClick={ insertTabAfterActive }>
 				{ __( 'Add tab', 'blockparty-tabs' ) }
 			</ToolbarButton>
-			<ToolbarButton isDisabled={ 1 >= count } onClick={ onRemoveBlocks }>
+			<ToolbarButton isDisabled={ ! canRemove } onClick={ removeTab }>
 				{ __( 'Remove tab', 'blockparty-tabs' ) }
 			</ToolbarButton>
 		</ToolbarGroup>
+	);
+};
+
+/**
+ * Button-style appender that inserts a synced nav item + panel item.
+ *
+ * @param {Object} props          Component props.
+ * @param {string} props.clientId tabs-nav block clientId.
+ * @return {JSX.Element} Appender button.
+ */
+export const TabsNavAppender = ( { clientId } ) => {
+	const { appendTab } = useTabsMutations( clientId );
+
+	return (
+		<Button
+			className="block-list-appender__toggle"
+			icon={ plus }
+			label={ __( 'Add tab', 'blockparty-tabs' ) }
+			onClick={ appendTab }
+		/>
 	);
 };
 

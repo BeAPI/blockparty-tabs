@@ -5,7 +5,10 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
-import { TabsAddRemoveBlockControls } from '../blockparty-tabs/TabsAddRemoveControls';
+import {
+	TabsAddRemoveBlockControls,
+	TabsNavAppender,
+} from '../blockparty-tabs/TabsAddRemoveControls';
 
 const BLOCKS_CHILD = 'blockparty/tabs-nav-item';
 const ALLOWED_BLOCKS = [ BLOCKS_CHILD ];
@@ -27,7 +30,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			[ BLOCKS_CHILD, LOCK_TEMPLATE ],
 		],
 		templateInsertUpdatesSelection: true,
-		renderAppender: false,
+		renderAppender: () => <TabsNavAppender clientId={ clientId } />,
 	} );
 
 	return (
