@@ -3,10 +3,10 @@
 # Bump the plugin version across project metadata, blocks, and docs.
 #
 # Usage (no chmod required):
-#   bash bin/bump.sh patch
-#   bash bin/bump.sh minor
-#   bash bin/bump.sh major
-#   bash bin/bump.sh 1.2.0
+#   bash tests/bin/bump.sh patch
+#   bash tests/bin/bump.sh minor
+#   bash tests/bin/bump.sh major
+#   bash tests/bin/bump.sh 1.2.0
 #   npm run bump -- patch
 #   npm run bump -- 1.2.0
 #
@@ -19,7 +19,7 @@ set -euo pipefail
 # Assets — add or remove paths here
 # ---------------------------------------------------------------------------
 
-ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 
 # JSON files that expose a top-level "version" field
 JSON_VERSION_FILES=(
@@ -67,12 +67,12 @@ replace_json_version() {
 
 usage() {
 	local code="${1:-0}"
-	echo "Usage: bash bin/bump.sh <patch|minor|major|x.y.z>"
+	echo "Usage: bash tests/bin/bump.sh <patch|minor|major|x.y.z>"
 	echo ""
 	echo "Examples:"
-	echo "  bash bin/bump.sh patch"
-	echo "  bash bin/bump.sh minor"
-	echo "  bash bin/bump.sh 1.2.0"
+	echo "  bash tests/bin/bump.sh patch"
+	echo "  bash tests/bin/bump.sh minor"
+	echo "  bash tests/bin/bump.sh 1.2.0"
 	echo "  npm run bump -- patch"
 	exit "${code}"
 }
