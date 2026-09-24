@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.0.0 - 2026-09-24
+
+- Use native `core/icon` for tab icons by default (breaking change)
+- Fix frontend spacing for `core/icon` next to tab labels
+- Add `blockparty_tabs_allowed_icon_blocks` filter to allow Blockparty / BeAPI icon blocks
+- Limit tabs to a single icon block (no duplication)
+- Improve accessibility: move `tablist` to nav and complete ARIA roles
+- Expand block supports and refresh block descriptions
+- Share add/remove tab toolbar controls across nav and panels
+- Add appender to insert synced tabs from the navigation
+- Fix KSES stripping of `aria-selected` and `tabindex` on tab links
+- Fix stale active index after tab removal
+- Fix panel pairing locks when moving tabs
+- Fix deprecated block versions omitting original supports
+- Fix first-tab validation after saving `is-active` on nav items
+- Update French translations
+- Move release/version scripts under `tests/bin`
+- Remove `@beapi/icons` dependency
+
 ## 1.1.5 - 2026-08-24
 
 - Fix editor margin reset for tabs block
