@@ -11,6 +11,7 @@
 		"html": false,
 		"visibility": false,
 		"lock": false,
+		"reusable": false,
 		"color": {
 			"background": true,
 			"text": true
