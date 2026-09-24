@@ -32,17 +32,25 @@ function init(): void {
 add_action( 'init', __NAMESPACE__ . '\\init' );
 
 /**
- * Allow aria attributes
+ * Allow ARIA and tabindex attributes required by the saved tabs markup.
  *
- * @param $tags
+ * Users without the `unfiltered_html` capability have post content filtered
+ * through KSES. Without these allowlist entries, attributes emitted by
+ * `save()` are stripped and the block fails validation on the next edit.
  *
- * @return mixed
+ * @param array  $tags    Allowed HTML tags and attributes.
+ * @param string $context Context for the allowed tags.
+ * @return array
  */
 function allow_attributes( $tags, $context ) {
-	if ( 'post' === $context ) {
-		$tags['button']['aria-expanded'] = true;
-		$tags['div']['tabindex']         = true;
+	if ( 'post' !== $context ) {
+		return $tags;
 	}
+
+	$tags['button']['aria-expanded'] = true;
+	$tags['div']['tabindex']         = true;
+	$tags['a']['aria-selected']      = true;
+	$tags['a']['tabindex']           = true;
 
 	return $tags;
 }
