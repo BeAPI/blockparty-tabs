@@ -39,6 +39,30 @@ function getTabsRootClientId( selectStore, clientId ) {
 }
 
 /**
+ * Computes tabsActive after removing the tab at removedIndex.
+ *
+ * @param {number} tabsActive   Current active index on the tabs block.
+ * @param {number} removedIndex Index being removed.
+ * @param {number} count        Tab count before removal.
+ * @return {number} Active index after removal.
+ */
+function getTabsActiveAfterRemove( tabsActive, removedIndex, count ) {
+	const newCount = count - 1;
+	if ( newCount <= 0 ) {
+		return 0;
+	}
+
+	let next = tabsActive;
+	if ( tabsActive > removedIndex ) {
+		next = tabsActive - 1;
+	} else if ( tabsActive === removedIndex ) {
+		next = Math.max( 0, removedIndex - 1 );
+	}
+
+	return Math.min( next, newCount - 1 );
+}
+
+/**
  * Hook exposing insert / remove / append helpers for a tabs tree.
  *
  * @param {string} clientId Block clientId (any block in the tabs tree).
@@ -46,13 +70,22 @@ function getTabsRootClientId( selectStore, clientId ) {
  * @return {Object} Tabs mutation helpers and resolved state.
  */
 export const useTabsMutations = ( clientId, index ) => {
-	const { navId, panelId, nav, panels, count, resolvedIndex } = useSelect(
+	const {
+		navId,
+		panelId,
+		nav,
+		panels,
+		count,
+		resolvedIndex,
+		tabsRootId,
+		tabsActive,
+	} = useSelect(
 		( selectStore ) => {
 			const { getBlockOrder, getBlockAttributes } =
 				selectStore( 'core/block-editor' );
-			const tabsRootId = getTabsRootClientId( selectStore, clientId );
+			const rootClientId = getTabsRootClientId( selectStore, clientId );
 
-			if ( ! tabsRootId ) {
+			if ( ! rootClientId ) {
 				return {
 					navId: null,
 					panelId: null,
@@ -60,21 +93,31 @@ export const useTabsMutations = ( clientId, index ) => {
 					panels: [],
 					count: 0,
 					resolvedIndex: 0,
+					tabsRootId: null,
+					tabsActive: 0,
 				};
 			}
 
-			const wrappers = getBlockOrder( tabsRootId );
+			const wrappers = getBlockOrder( rootClientId );
 			const navBlocks = getBlockOrder( wrappers[ 0 ] );
-			const tabsActive =
-				getBlockAttributes( tabsRootId )?.tabsActive ?? 0;
+			const storedTabsActive =
+				getBlockAttributes( rootClientId )?.tabsActive ?? 0;
+			const tabCount = navBlocks.length;
+			const maxIndex = Math.max( 0, tabCount - 1 );
+			const nextResolvedIndex =
+				typeof index === 'number'
+					? index
+					: Math.min( Math.max( storedTabsActive, 0 ), maxIndex );
 
 			return {
 				navId: wrappers[ 0 ],
 				panelId: wrappers[ 1 ],
 				nav: navBlocks,
 				panels: getBlockOrder( wrappers[ 1 ] ),
-				count: navBlocks.length,
-				resolvedIndex: typeof index === 'number' ? index : tabsActive,
+				count: tabCount,
+				resolvedIndex: nextResolvedIndex,
+				tabsRootId: rootClientId,
+				tabsActive: storedTabsActive,
 			};
 		},
 		[ clientId, index ]
@@ -109,18 +152,34 @@ export const useTabsMutations = ( clientId, index ) => {
 	};
 
 	const removeTab = () => {
-		if ( ! navId || ! panelId || 1 >= count ) {
+		if ( ! navId || ! panelId || ! tabsRootId || 1 >= count ) {
 			return;
 		}
 
-		updateBlockAttributes(
-			[ nav[ resolvedIndex ], panels[ resolvedIndex ] ],
-			{
-				lock: { move: true, remove: false },
-			}
+		if ( 0 > resolvedIndex || resolvedIndex >= count ) {
+			return;
+		}
+
+		const navClientId = nav[ resolvedIndex ];
+		const panelClientId = panels[ resolvedIndex ];
+		if ( ! navClientId || ! panelClientId ) {
+			return;
+		}
+
+		const nextTabsActive = getTabsActiveAfterRemove(
+			tabsActive,
+			resolvedIndex,
+			count
 		);
-		removeBlock( panels[ resolvedIndex ] );
-		removeBlock( nav[ resolvedIndex ] );
+
+		updateBlockAttributes( [ navClientId, panelClientId ], {
+			lock: { move: true, remove: false },
+		} );
+		removeBlock( panelClientId );
+		removeBlock( navClientId );
+		updateBlockAttributes( tabsRootId, {
+			tabsActive: nextTabsActive,
+		} );
 	};
 
 	return {
