@@ -5,20 +5,39 @@
 	"version": "1.1.5",
 	"title": "Tab",
 	"category": "widgets",
-	"description": "Accessible tabs block item",
-	"parent": [
-		"blockparty/tabs-nav"
-	],
+	"description": "A single tab button used to switch to its matching content panel.",
+	"parent": [ "blockparty/tabs-nav" ],
 	"supports": {
 		"html": false,
-		"anchor": false,
-		"align": false,
+		"visibility": false,
+		"lock": false,
+		"reusable": false,
 		"color": {
 			"background": true,
 			"text": true
 		},
-		"lock": false,
-		"reusable": false
+		"typography": {
+			"fontSize": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"layout": {
+			"default": {
+				"type": "flex",
+				"flexWrap": "wrap"
+			},
+			"allowVerticalAlignment": false,
+			"allowOrientation": false,
+			"allowWrap": false
+		},
+		"spacing": {
+			"padding": true,
+			"blockGap": true
+		}
 	},
 	"attributes": {
 		"label": {
@@ -42,10 +61,7 @@
 			"type": "integer"
 		}
 	},
-	"usesContext": [
-		"blockparty/Tabs",
-		"blockparty/TabsActive"
-	],
+	"usesContext": [ "blockparty/Tabs", "blockparty/TabsActive" ],
 	"textdomain": "blockparty-tabs",
 	"editorScript": "file:./index.js"
 }

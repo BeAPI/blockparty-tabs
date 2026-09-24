@@ -32,17 +32,107 @@ function init(): void {
 add_action( 'init', __NAMESPACE__ . '\\init' );
 
 /**
- * Allow aria attributes
+ * Default icon block used inside tab nav items.
+ */
+const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK = 'core/icon';
+
+/**
+ * Returns the icon block names allowed inside tab nav items.
  *
- * @param $tags
+ * @return string[] Block names (e.g. `core/icon`).
+ */
+function get_allowed_icon_blocks(): array {
+	/**
+	 * Filters the icon block types allowed inside tab nav items.
+	 *
+	 * By default only `core/icon` is allowed. To keep supporting
+	 * Blockparty Icons / BeAPI Icon Block as before:
+	 *
+	 *     add_filter(
+	 *         'blockparty_tabs_allowed_icon_blocks',
+	 *         static function ( array $blocks ): array {
+	 *             $blocks[] = 'blockparty/icon';
+	 *             $blocks[] = 'beapi/icon-block';
+	 *             return $blocks;
+	 *         }
+	 *     );
+	 *
+	 * The first registered block in the list is used as the InnerBlocks
+	 * template when enabling an icon on a tab.
+	 *
+	 * @param string[] $blocks Allowed block names.
+	 */
+	$blocks = apply_filters(
+		'blockparty_tabs_allowed_icon_blocks',
+		[ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ]
+	);
+
+	if ( ! is_array( $blocks ) ) {
+		return [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ];
+	}
+
+	$sanitized = [];
+	foreach ( $blocks as $block ) {
+		if ( ! is_string( $block ) ) {
+			continue;
+		}
+
+		$block = strtolower( trim( $block ) );
+		if ( ! preg_match( '/^[a-z0-9-]+\/[a-z0-9-]+$/', $block ) ) {
+			continue;
+		}
+
+		$sanitized[] = $block;
+	}
+
+	$sanitized = array_values( array_unique( $sanitized ) );
+
+	return [] === $sanitized ? [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ] : $sanitized;
+}
+
+/**
+ * Passes editor settings (allowed icon blocks) to the nav-item script.
+ */
+function enqueue_editor_settings(): void {
+	$handle = generate_block_asset_handle( 'blockparty/tabs-nav-item', 'editorScript' );
+
+	if ( ! wp_script_is( $handle, 'registered' ) ) {
+		return;
+	}
+
+	$settings = [
+		'allowedIconBlocks' => get_allowed_icon_blocks(),
+	];
+
+	wp_add_inline_script(
+		$handle,
+		'window.blockpartyTabsSettings = ' . wp_json_encode( $settings ) . ';',
+		'before'
+	);
+}
+
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_settings' );
+
+/**
+ * Allow ARIA and tabindex attributes required by the saved tabs markup.
  *
- * @return mixed
+ * Users without the `unfiltered_html` capability have post content filtered
+ * through KSES. Without these allowlist entries, attributes emitted by
+ * `save()` are stripped and the block fails validation on the next edit.
+ *
+ * @param array  $tags    Allowed HTML tags and attributes.
+ * @param string $context Context for the allowed tags.
+ * @return array
  */
 function allow_attributes( $tags, $context ) {
-	if ( 'post' === $context ) {
-		$tags['button']['aria-expanded'] = true;
-		$tags['div']['tabindex']         = true;
+	if ( 'post' !== $context ) {
+		return $tags;
 	}
+
+	$tags['button']['aria-expanded'] = true;
+	$tags['div']['tabindex']         = true;
+	$tags['a']['aria-selected']      = true;
+	$tags['a']['tabindex']           = true;
 
 	return $tags;
 }

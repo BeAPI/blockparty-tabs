@@ -5,23 +5,48 @@
 	"version": "1.1.5",
 	"title": "Tabs",
 	"category": "widgets",
-	"description": "Accessible tabs block",
+	"description": "Organize content into tabs so visitors can browse sections without scrolling endlessly.",
 	"supports": {
-		"html": false,
+		"align": [ "full", "wide" ],
 		"anchor": true,
-		"align": [
-			"wide",
-			"full"
-		]
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true,
+			"gradient": true
+		},
+		"color": {
+			"text": true,
+			"background": true,
+			"heading": true,
+			"button": true,
+			"link": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"layout": {
+			"allowEditing": false
+		},
+		"html": false,
+		"interactivity": true,
+		"spacing": {
+			"blockGap": true,
+			"margin": true,
+			"padding": true
+		},
+		"shadow": true,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		}
 	},
 	"attributes": {
 		"tabsIndex": {
 			"type": "integer",
 			"default": 0
-		},
-		"title": {
-			"type": "string",
-			"default": ""
 		},
 		"tabsActive": {
 			"type": "integer",
