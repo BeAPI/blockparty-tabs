@@ -1,6 +1,6 @@
 import { getBlockType } from '@wordpress/blocks';
 
-const DEFAULT_ICON_BLOCK = 'core/icon';
+const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK = 'core/icon';
 
 /**
  * Legacy Blockparty / BeAPI icon blocks expect width + maxIcons.
@@ -33,7 +33,7 @@ export const getRegisteredIconBlocks = () => {
 	const candidates =
 		Array.isArray( fromPhp ) && fromPhp.length > 0
 			? fromPhp
-			: [ DEFAULT_ICON_BLOCK ];
+			: [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ];
 
 	return candidates.filter(
 		( blockName ) => typeof getBlockType( blockName ) !== 'undefined'

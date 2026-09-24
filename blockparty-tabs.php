@@ -34,7 +34,7 @@ add_action( 'init', __NAMESPACE__ . '\\init' );
 /**
  * Default icon block used inside tab nav items.
  */
-const DEFAULT_ICON_BLOCK = 'core/icon';
+const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK = 'core/icon';
 
 /**
  * Returns the icon block names allowed inside tab nav items.
@@ -64,11 +64,11 @@ function get_allowed_icon_blocks(): array {
 	 */
 	$blocks = apply_filters(
 		'blockparty_tabs_allowed_icon_blocks',
-		[ DEFAULT_ICON_BLOCK ]
+		[ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ]
 	);
 
 	if ( ! is_array( $blocks ) ) {
-		return [ DEFAULT_ICON_BLOCK ];
+		return [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ];
 	}
 
 	$sanitized = [];
@@ -87,7 +87,7 @@ function get_allowed_icon_blocks(): array {
 
 	$sanitized = array_values( array_unique( $sanitized ) );
 
-	return [] === $sanitized ? [ DEFAULT_ICON_BLOCK ] : $sanitized;
+	return [] === $sanitized ? [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ] : $sanitized;
 }
 
 /**
