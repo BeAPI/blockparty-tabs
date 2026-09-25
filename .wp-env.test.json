@@ -1,11 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/wp-env.json",
 	"core": null,
-	"port": 8890,
+	"port": 8891,
 	"plugins": [
 		"."
 	],
 	"lifecycleScripts": {
-		"afterStart": "./tests/bin/initialize.sh"
+		"afterStart": "./tests/bin/initialize.sh --config=./.wp-env.test.json"
 	}
 }
