@@ -1,7 +1,10 @@
 import { select } from '@wordpress/data';
 
 const GetSynchedID = ( clientId, context, setAttributes ) => {
-	const InstanceId = context[ 'blockparty/Tabs' ];
+	const InstanceId = context?.[ 'blockparty/Tabs' ];
+	if ( typeof InstanceId === 'undefined' ) {
+		return;
+	}
 	const currentIndex =
 		select( 'core/block-editor' ).getBlockIndex( clientId );
 	const synkedId = InstanceId + '-' + currentIndex;

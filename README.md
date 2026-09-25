@@ -54,7 +54,22 @@ By default, the block comes with 3 tabs. Each tab contains a panel where you can
 
 1. Select a tab item
 2. In the block toolbar, click the "Icon" button
-3. Choose an icon from the available options
+3. Choose an icon from the available options (native WordPress `core/icon` block)
+
+To keep supporting Blockparty Icons / BeAPI Icon Block instead of (or in addition to) `core/icon`, use the `blockparty_tabs_allowed_icon_blocks` filter:
+
+```php
+add_filter(
+	'blockparty_tabs_allowed_icon_blocks',
+	static function ( array $blocks ): array {
+		$blocks[] = 'blockparty/icon';
+		$blocks[] = 'beapi/icon-block';
+		return $blocks;
+	}
+);
+```
+
+The first registered block in the list is used as the default template when enabling an icon on a tab.
 
 #### Changing Colors
 

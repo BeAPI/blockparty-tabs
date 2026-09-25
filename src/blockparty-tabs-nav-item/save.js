@@ -1,15 +1,21 @@
 import { useBlockProps, InnerBlocks, RichText } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { hasIcon, label, panelId, linkId } = attributes;
+	const { hasIcon, label, panelId, linkId, index } = attributes;
+	const isSelected = 0 === index;
+	const blockProps = useBlockProps.save( {
+		className: isSelected ? 'is-active' : undefined,
+	} );
 
 	return (
-		<li { ...useBlockProps.save() }>
+		<li { ...blockProps }>
 			<a
 				id={ linkId }
 				role="tab"
 				aria-controls={ panelId }
-				className={ 'wp-block-blockparty-tabs-nav-link' }
+				aria-selected={ isSelected }
+				tabIndex={ isSelected ? undefined : -1 }
+				className="wp-block-blockparty-tabs-nav-link"
 				href={ '#' + linkId }
 			>
 				{ hasIcon && <InnerBlocks.Content /> }

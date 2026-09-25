@@ -2,6 +2,8 @@ import classnames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
 import getSynchedID from '../blockparty-tabs/GetSynchedID';
+import { TabsAddRemoveBlockControls } from '../blockparty-tabs/TabsAddRemoveControls';
+
 export default function Edit( {
 	setAttributes,
 	clientId,
@@ -9,12 +11,17 @@ export default function Edit( {
 	attributes,
 } ) {
 	getSynchedID( clientId, context, setAttributes );
-	const { index } = attributes;
-	const TabsActive = context[ 'blockparty/TabsActive' ];
+	const { index, panelId, linkId } = attributes;
+	const tabsActive = context?.[ 'blockparty/TabsActive' ];
+	const isSelected = tabsActive === index;
 	const blockProps = useBlockProps( {
 		className: classnames( {
-			'is-active': TabsActive === index,
+			'is-active': isSelected,
 		} ),
+		role: 'tabpanel',
+		tabIndex: 0,
+		id: panelId,
+		'aria-labelledby': linkId,
 	} );
 	let allowedBlocks = [];
 	const hasSupport = select( 'core/blocks' ).hasBlockSupport(
@@ -44,13 +51,16 @@ export default function Edit( {
 	}
 
 	return (
-		<div { ...blockProps }>
-			<InnerBlocks
-				allowedBlocks={ allowedBlocks }
-				templateLock={ false }
-				templateInsertUpdatesSelection={ false }
-				template={ [ [ 'core/paragraph' ] ] }
-			/>
-		</div>
+		<>
+			<TabsAddRemoveBlockControls clientId={ clientId } index={ index } />
+			<div { ...blockProps }>
+				<InnerBlocks
+					allowedBlocks={ allowedBlocks }
+					templateLock={ false }
+					templateInsertUpdatesSelection={ false }
+					template={ [ [ 'core/paragraph' ] ] }
+				/>
+			</div>
+		</>
 	);
 }

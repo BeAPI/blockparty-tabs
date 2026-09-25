@@ -35,6 +35,31 @@
                 white-space: nowrap;
             }
         }
+
+        // Override Gutenberg's absolute appender so it sits after the last tab.
+        > .block-list-appender {
+            position: static;
+            right: auto;
+            bottom: auto;
+            display: none;
+            flex: 0 0 auto;
+            align-self: center;
+            width: auto;
+            margin: 0;
+            list-style: none;
+
+            .block-list-appender__toggle {
+                display: flex;
+            }
+        }
+
+        &.is-selected,
+        &.has-child-selected {
+            > .block-list-appender {
+                display: inline-flex;
+                align-items: center;
+            }
+        }
     }
 
     &-panels {
@@ -64,6 +89,13 @@
 
     &.has-align-sidebar-right,
     &.has-align-sidebar-left {
+
+        > #{$block}-nav {
+            > .block-list-appender {
+                justify-content: center;
+                width: 100%;
+            }
+        }
 
         > #{$block}-panels {
             > #{$block}-panel-item {

@@ -3,14 +3,11 @@ import classnames from 'classnames';
 import {
 	useBlockProps,
 	useInnerBlocksProps,
-	InspectorControls,
 	BlockControls,
 	AlignmentControl,
 } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
 import { select } from '@wordpress/data';
 import {
-	heading,
 	justifyRight,
 	justifyCenter,
 	justifyLeft,
@@ -20,6 +17,7 @@ import {
 } from '@wordpress/icons';
 import './editor.scss';
 import { useSyncTabsActiveForTabsBlock } from './SyncTabsActive';
+import { TabsAddRemoveToolbar } from './TabsAddRemoveControls';
 
 const DEFAULT_TABS_POSITIONS = [
 	{
@@ -63,7 +61,7 @@ const setTabsIndex = ( setAttributes, clientId ) => {
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	useSyncTabsActiveForTabsBlock( clientId );
 	setTabsIndex( setAttributes, clientId );
-	const { title, mode } = attributes;
+	const { mode } = attributes;
 	const blockProps = useBlockProps( {
 		className: classnames( {
 			[ `has-align-${ mode }` ]: mode,
@@ -102,24 +100,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						setAttributes( { mode: newAlign } )
 					}
 				/>
+				<TabsAddRemoveToolbar clientId={ clientId } />
 			</BlockControls>
-			<InspectorControls>
-				<PanelBody
-					title={ __( 'Accessibility', 'blockparty-tabs' ) }
-					icon={ heading }
-					initialOpen={ true }
-				>
-					<PanelRow>
-						<TextControl
-							value={ title }
-							label={ __( 'Title' ) }
-							onChange={ ( content ) => {
-								setAttributes( { title: content } );
-							} }
-						/>
-					</PanelRow>
-				</PanelBody>
-			</InspectorControls>
 			<div { ...innerBlocksProps } />
 		</>
 	);
