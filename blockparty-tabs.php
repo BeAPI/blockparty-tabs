@@ -131,6 +131,7 @@ function allow_attributes( $tags, $context ) {
 
 	$tags['button']['aria-expanded'] = true;
 	$tags['div']['tabindex']         = true;
+	$tags['a']['aria-controls']      = true;
 	$tags['a']['aria-selected']      = true;
 	$tags['a']['tabindex']           = true;
 
@@ -138,3 +139,31 @@ function allow_attributes( $tags, $context ) {
 }
 
 add_filter( 'wp_kses_allowed_html', __NAMESPACE__ . '\\allow_attributes', 10, 2 );
+
+/**
+ * Polyfill the `react-jsx-runtime` script for WordPress versions before 6.6.
+ *
+ * Built editor assets from modern `@wordpress/scripts` depend on this handle.
+ * Without it, block editor scripts do not load and blocks never register in JS.
+ *
+ * @param \WP_Scripts $scripts WP_Scripts instance.
+ */
+function register_react_jsx_runtime( $scripts ): void {
+	if ( isset( $scripts->registered['react-jsx-runtime'] ) ) {
+		return;
+	}
+
+	$asset = BLOCKPARTY_TABS_DIR . 'build/react-jsx-runtime.js';
+	if ( ! is_readable( $asset ) ) {
+		return;
+	}
+
+	$scripts->add(
+		'react-jsx-runtime',
+		BLOCKPARTY_TABS_URL . 'build/react-jsx-runtime.js',
+		[ 'react' ],
+		BLOCKPARTY_TABS_VERSION
+	);
+}
+
+add_action( 'wp_default_scripts', __NAMESPACE__ . '\\register_react_jsx_runtime' );

@@ -27,6 +27,7 @@ class AllowAttributesTest extends WP_UnitTestCase {
 
 		$result = allow_attributes( $tags, 'post' );
 
+		$this->assertTrue( $result['a']['aria-controls'] );
 		$this->assertTrue( $result['a']['aria-selected'] );
 		$this->assertTrue( $result['a']['tabindex'] );
 		$this->assertTrue( $result['div']['tabindex'] );
