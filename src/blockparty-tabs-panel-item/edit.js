@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { select } from '@wordpress/data';
-import getSynchedID from '../blockparty-tabs/GetSynchedID';
+import useSynchedID from '../blockparty-tabs/GetSynchedID';
 import { TabsAddRemoveBlockControls } from '../blockparty-tabs/TabsAddRemoveControls';
 
 export default function Edit( {
@@ -10,7 +10,7 @@ export default function Edit( {
 	context,
 	attributes,
 } ) {
-	getSynchedID( clientId, context, setAttributes );
+	useSynchedID( clientId, context, attributes, setAttributes );
 	const { index, panelId, linkId } = attributes;
 	const tabsActive = context?.[ 'blockparty/TabsActive' ];
 	const isSelected = tabsActive === index;

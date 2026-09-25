@@ -6,7 +6,8 @@ import {
 	BlockControls,
 	AlignmentControl,
 } from '@wordpress/block-editor';
-import { select } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
+import { select, useSelect } from '@wordpress/data';
 import {
 	justifyRight,
 	justifyCenter,
@@ -52,15 +53,22 @@ const DEFAULT_TABS_POSITIONS = [
 	},
 ];
 
-const setTabsIndex = ( setAttributes, clientId ) => {
-	const currentIndex =
-		select( 'core/block-editor' ).getBlockIndex( clientId );
-	setAttributes( { tabsIndex: currentIndex } );
-};
-
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	useSyncTabsActiveForTabsBlock( clientId );
-	setTabsIndex( setAttributes, clientId );
+
+	const currentIndex = useSelect(
+		( selectStore ) =>
+			selectStore( 'core/block-editor' ).getBlockIndex( clientId ),
+		[ clientId ]
+	);
+
+	useEffect( () => {
+		if ( attributes.tabsIndex === currentIndex ) {
+			return;
+		}
+		setAttributes( { tabsIndex: currentIndex } );
+	}, [ attributes.tabsIndex, currentIndex, setAttributes ] );
+
 	const { mode } = attributes;
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -84,7 +92,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	}
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
-		__experimentalDirectInsert: false,
+		directInsert: false,
 		templateLock: 'all',
 		template: [ [ 'blockparty/tabs-nav' ], [ 'blockparty/tabs-panels' ] ],
 		templateInsertUpdatesSelection: true,

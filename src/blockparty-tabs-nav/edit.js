@@ -21,7 +21,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	} );
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		__experimentalDirectInsert: false,
+		directInsert: false,
 		orientation: 'horizontal',
 		templateLock: false,
 		template: [
