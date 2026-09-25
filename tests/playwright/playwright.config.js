@@ -13,7 +13,7 @@ process.env.STORAGE_STATE_PATH ??= join(
 	process.env.WP_ARTIFACTS_PATH,
 	'storage-states/admin.json'
 );
-process.env.WP_BASE_URL ??= 'http://localhost:8891';
+process.env.WP_BASE_URL ??= 'http://localhost:8889';
 
 export default defineConfig( {
 	...baseConfig,
@@ -27,7 +27,7 @@ export default defineConfig( {
 	},
 	webServer: {
 		command: 'npm run env:start-ci',
-		port: 8891,
+		port: 8889,
 		timeout: 120_000,
 		reuseExistingServer: true,
 	},

@@ -24,11 +24,9 @@
 		"test:php": "wp-env run cli --config=./.wp-env.test.json --env-cwd=wp-content/plugins/blockparty-tabs/ -- ./vendor/bin/phpunit",
 		"test:php:coverage": "wp-env run cli --config=./.wp-env.test.json --env-cwd=wp-content/plugins/blockparty-tabs/ -- ./vendor/bin/phpunit --coverage-html=./coverage/ --coverage-text",
 		"test:unit:js": "wp-scripts test-unit-js",
-		"test:e2e": "WP_BASE_URL=http://localhost:8891 wp-scripts test-playwright --config tests/playwright/playwright.config.js",
-		"test:e2e-debug": "WP_BASE_URL=http://localhost:8891 wp-scripts test-playwright --debug --config tests/playwright/playwright.config.js",
-		"test:e2e-headed": "WP_BASE_URL=http://localhost:8891 wp-scripts test-playwright --headed --config tests/playwright/playwright.config.js",
-		"test:e2e-ui": "WP_BASE_URL=http://localhost:8891 wp-scripts test-playwright --ui --config tests/playwright/playwright.config.js",
-		"test:e2e-help": "wp-scripts test-playwright --help",
+		"test:e2e": "wp-scripts test-playwright --config tests/playwright/playwright.config.js",
+		"test:e2e-debug": "wp-scripts test-playwright --headed --config tests/playwright/playwright.config.js",
+		"test:e2e-ui": "wp-scripts test-playwright --ui --config tests/playwright/playwright.config.js",
 		"make-pot": "wp i18n make-pot . languages/blockparty-tabs.pot --slug=blockparty-tabs --domain=blockparty-tabs --exclude=node_modules,src",
 		"make-json": "wp i18n make-json languages/ --no-purge",
 		"bump": "bash tests/bin/bump.sh"
@@ -45,11 +43,15 @@
 		"@wordpress/i18n": "^4.54.0",
 		"@wordpress/icons": "^12.2.0",
 		"@wordpress/primitives": "^3.52.0",
-		"@wordpress/scripts": "^30.17.0",
-		"stylelint-config-recess-order": "^7.7.0"
+		"@wordpress/scripts": "^30.27.0",
+		"stylelint-config-recess-order": "^7.8.0"
 	},
 	"dependencies": {
 		"classnames": "^2.5.1"
+	},
+	"engines": {
+		"node": ">=20",
+		"npm": ">=10"
 	},
 	"volta": {
 		"node": "24.15.0"

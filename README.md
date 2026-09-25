@@ -156,7 +156,7 @@ npm run lint:css
 
 ### Testing
 
-PHP integration tests run inside an isolated wp-env instance (port `8891`):
+PHP integration tests run inside an isolated wp-env instance (port `8889`):
 
 ```bash
 composer install
