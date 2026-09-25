@@ -76,11 +76,15 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium
 
+      # Zip artifacts strip Unix execute bits; tar preserves them for Playwright binaries.
+      - name: Pack Chromium cache
+        run: tar -C "$HOME/.cache" -czf playwright-chromium.tar.gz ms-playwright
+
       - name: Archive Chromium
         uses: actions/upload-artifact@v4
         with:
           name: playwright-chromium
-          path: ~/.cache/ms-playwright
+          path: playwright-chromium.tar.gz
 
   test-e2e:
     name: E2E - WP ${{ matrix.core || 'latest' }} / PHP ${{ matrix.php }}
@@ -118,7 +122,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: playwright-chromium
-          path: ~/.cache/ms-playwright
+          path: .
+
+      - name: Unpack Chromium cache
+        run: |
+          mkdir -p "$HOME/.cache"
+          tar -C "$HOME/.cache" -xzf playwright-chromium.tar.gz
 
       - name: Install Chromium operating-system dependencies
         run: npx playwright install-deps chromium
