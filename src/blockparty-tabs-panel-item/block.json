@@ -9,7 +9,7 @@
 	"description": "The content panel shown when its matching tab is selected.",
 	"parent": [ "blockparty/tabs-panels" ],
 	"supports": {
-		"anchor": true,
+		"anchor": false,
 		"background": {
 			"backgroundImage": true,
 			"backgroundSize": true,
