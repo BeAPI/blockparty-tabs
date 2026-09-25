@@ -7,6 +7,12 @@ yarn-error.log*
 
 # Coverage directory used by tools like istanbul
 coverage
+/coverage/
+.phpunit.result.cache
+.phplint.cache
+
+# Playwright / E2E artifacts
+/artifacts/
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
@@ -31,3 +37,6 @@ vendor/
 
 # dotenv environment variables file
 .env
+
+# Composer
+composer.lock
