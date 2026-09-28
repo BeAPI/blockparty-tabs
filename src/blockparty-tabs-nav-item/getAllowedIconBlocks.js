@@ -1,6 +1,17 @@
 import { getBlockType } from '@wordpress/blocks';
 
-const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK = 'core/icon';
+/**
+ * Default icon blocks allowed inside tab nav items.
+ *
+ * `core/icon` ships in WordPress 7.0+. Legacy Blockparty / BeAPI icon blocks
+ * remain so icons keep working on WordPress 6.2–6.8 when those plugins are
+ * active. Only registered names are kept by getRegisteredIconBlocks().
+ */
+export const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS = [
+	'core/icon',
+	'blockparty/icon',
+	'beapi/icon-block',
+];
 
 /**
  * Legacy Blockparty / BeAPI icon blocks expect width + maxIcons.
@@ -33,7 +44,7 @@ export const getRegisteredIconBlocks = () => {
 	const candidates =
 		Array.isArray( fromPhp ) && fromPhp.length > 0
 			? fromPhp
-			: [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ];
+			: BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS;
 
 	return candidates.filter(
 		( blockName ) => typeof getBlockType( blockName ) !== 'undefined'

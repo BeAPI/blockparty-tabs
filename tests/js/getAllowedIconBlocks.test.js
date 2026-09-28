@@ -6,6 +6,7 @@
  * Internal dependencies
  */
 import {
+	BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS,
 	getIconTemplateAttributes,
 	getRegisteredIconBlocks,
 } from '../../src/blockparty-tabs-nav-item/getAllowedIconBlocks';
@@ -41,12 +42,30 @@ describe( 'getRegisteredIconBlocks', () => {
 		delete window.blockpartyTabsSettings;
 	} );
 
-	it( 'defaults to core/icon when settings are missing', () => {
+	it( 'defaults to registered candidates from the shared default list', () => {
 		getBlockType.mockImplementation( ( name ) =>
-			name === 'core/icon' ? { name } : undefined
+			name === 'blockparty/icon' ? { name } : undefined
 		);
 
-		expect( getRegisteredIconBlocks() ).toEqual( [ 'core/icon' ] );
+		expect( BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS ).toEqual( [
+			'core/icon',
+			'blockparty/icon',
+			'beapi/icon-block',
+		] );
+		expect( getRegisteredIconBlocks() ).toEqual( [ 'blockparty/icon' ] );
+	} );
+
+	it( 'prefers core/icon when it is registered among defaults', () => {
+		getBlockType.mockImplementation( ( name ) =>
+			[ 'core/icon', 'blockparty/icon' ].includes( name )
+				? { name }
+				: undefined
+		);
+
+		expect( getRegisteredIconBlocks() ).toEqual( [
+			'core/icon',
+			'blockparty/icon',
+		] );
 	} );
 
 	it( 'keeps only registered blocks from PHP settings', () => {
@@ -73,6 +92,12 @@ describe( 'getRegisteredIconBlocks', () => {
 		window.blockpartyTabsSettings = {
 			allowedIconBlocks: [ 'blockparty/icon' ],
 		};
+		getBlockType.mockReturnValue( undefined );
+
+		expect( getRegisteredIconBlocks() ).toEqual( [] );
+	} );
+
+	it( 'returns an empty list on WordPress without core/icon or legacy plugins', () => {
 		getBlockType.mockReturnValue( undefined );
 
 		expect( getRegisteredIconBlocks() ).toEqual( [] );
