@@ -198,7 +198,7 @@ export const useTabsMutations = ( clientId, index ) => {
  * @param {Object} props          Component props.
  * @param {string} props.clientId Block clientId (any block in the tabs tree).
  * @param {number} [props.index]  Explicit tab index; falls back to tabsActive.
- * @return {JSX.Element} Toolbar group.
+ * @return {Element} Toolbar group.
  */
 export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
 	const { canRemove, insertTabAfterActive, removeTab } = useTabsMutations(
@@ -223,7 +223,7 @@ export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
  *
  * @param {Object} props          Component props.
  * @param {string} props.clientId tabs-nav block clientId.
- * @return {JSX.Element} Appender button.
+ * @return {Element} Appender button.
  */
 export const TabsNavAppender = ( { clientId } ) => {
 	const { appendTab } = useTabsMutations( clientId );
@@ -244,7 +244,7 @@ export const TabsNavAppender = ( { clientId } ) => {
  * @param {Object} props          Component props.
  * @param {string} props.clientId Block clientId (any block in the tabs tree).
  * @param {number} [props.index]  Explicit tab index; falls back to tabsActive.
- * @return {JSX.Element} Block controls with shared toolbar.
+ * @return {Element} Block controls with shared toolbar.
  */
 export const TabsAddRemoveBlockControls = ( { clientId, index } ) => (
 	<BlockControls>
