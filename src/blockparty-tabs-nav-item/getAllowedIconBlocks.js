@@ -4,7 +4,7 @@ import { getBlockType } from '@wordpress/blocks';
  * Default icon blocks allowed inside tab nav items.
  *
  * `core/icon` ships in WordPress 7.0+. Legacy Blockparty / BeAPI icon blocks
- * remain so icons keep working on WordPress 6.2–6.8 when those plugins are
+ * remain so icons keep working on WordPress 6.4–6.9 when those plugins are
  * active. Only registered names are kept by getRegisteredIconBlocks().
  */
 export const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS = [

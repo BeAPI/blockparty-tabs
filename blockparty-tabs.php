@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Blockparty Tabs
  * Description:       Accessible Tabs block for WordPress gutenberg.
- * Requires at least: 6.2
+ * Requires at least: 6.4
  * Requires PHP:      8.1
  * Version:           1.1.5
  * Author:            Be API Technical team
@@ -35,7 +35,7 @@ add_action( 'init', __NAMESPACE__ . '\\init' );
  * Default icon blocks allowed inside tab nav items.
  *
  * `core/icon` ships in WordPress 7.0+. Legacy Blockparty / BeAPI icon blocks
- * remain in the default list so icons keep working on the required 6.2+ range
+ * remain in the default list so icons keep working on the required 6.4+ range
  * whenever those plugins are active. The editor keeps only registered names.
  */
 const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS = [

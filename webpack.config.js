@@ -10,7 +10,7 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 /**
  * Polyfill for the `react-jsx-runtime` script handle added in WordPress 6.6.
  * Modern @wordpress/scripts builds declare this dependency; without it, editor
- * scripts never load on WordPress 6.2–6.5 and blocks stay unregistered.
+ * scripts never load on WordPress 6.4–6.5 and blocks stay unregistered.
  *
  * Compiled after the main blocks config (`dependencies`) so `output.clean` from
  * `@wordpress/scripts` cannot delete the polyfill asset in a parallel race.

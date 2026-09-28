@@ -6,9 +6,8 @@ import { test, expect } from '../utils/fixtures';
 /**
  * Resolve the block editor content root.
  *
- * WordPress 6.3+ uses an iframed canvas (`editor-canvas`). Older versions render
- * blocks in the parent document. `FrameLocator.or()` is unreliable when the
- * iframe is absent, so detect the canvas mode explicitly.
+ * WordPress 6.4+ uses an iframed canvas (`editor-canvas`). Detect the canvas
+ * mode explicitly: `FrameLocator.or()` is unreliable when the iframe is absent.
  *
  * @param {import('@playwright/test').Page} page
  */

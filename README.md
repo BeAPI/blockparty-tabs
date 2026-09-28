@@ -15,7 +15,7 @@ An accessible tabs block for WordPress Gutenberg editor that follows ARIA best p
 
 ## Requirements
 
-- WordPress 6.2 or higher
+- WordPress 6.4 or higher
 - PHP 8.1 or higher
 - Gutenberg editor enabled
 
@@ -62,7 +62,7 @@ By default the plugin allows, in order:
 2. `blockparty/icon`
 3. `beapi/icon-block`
 
-Only registered blocks are kept, so on WordPress 6.2–6.8 icons work when Blockparty Icons or BeAPI Icon Block is active. On WordPress 7.0+, `core/icon` is preferred when present.
+Only registered blocks are kept, so on WordPress 6.4–6.9 icons work when Blockparty Icons or BeAPI Icon Block is active. On WordPress 7.0+, `core/icon` is preferred when present.
 
 Customize the list with the `blockparty_tabs_allowed_icon_blocks` filter:
 
