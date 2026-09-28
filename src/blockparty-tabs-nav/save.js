@@ -1,6 +1,10 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export default function save() {
-	const innerBlocksProps = useInnerBlocksProps.save( useBlockProps.save() );
+	const innerBlocksProps = useInnerBlocksProps.save(
+		useBlockProps.save( {
+			role: 'tablist',
+		} )
+	);
 	return <ul { ...innerBlocksProps } />;
 }

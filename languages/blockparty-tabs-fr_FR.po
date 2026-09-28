@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blockparty Tabs 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blockparty-tabs\n"
-"POT-Creation-Date: 2024-04-02T21:25:23+00:00\n"
-"PO-Revision-Date: 2024-04-02 23:27+0200\n"
+"POT-Creation-Date: 2026-09-24T13:02:27+00:00\n"
+"PO-Revision-Date: 2026-09-24 15:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.9\n"
 "X-Domain: blockparty-tabs\n"
 
 #. Plugin Name of the plugin
@@ -36,32 +36,49 @@ msgid "https://beapi.fr"
 msgstr "https://beapi.fr"
 
 #: build/blockparty-tabs-nav-item/index.js:1
-msgid "Move Item Before"
-msgstr "Déplacer l’élément à gauche"
+#: build/blockparty-tabs-nav/index.js:1
+#: build/blockparty-tabs-panel-item/index.js:1
+#: build/blockparty-tabs-panels/index.js:1 build/blockparty-tabs/index.js:1
+msgid "Add tab"
+msgstr "Ajouter un onglet"
 
 #: build/blockparty-tabs-nav-item/index.js:1
-msgid "Move Item After"
-msgstr "Déplacer l’élément à droite"
+#: build/blockparty-tabs-nav/index.js:1
+#: build/blockparty-tabs-panel-item/index.js:1
+#: build/blockparty-tabs-panels/index.js:1 build/blockparty-tabs/index.js:1
+msgid "Remove tab"
+msgstr "Supprimer l’onglet"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Move tab before"
+msgstr "Déplacer l’onglet à gauche"
+
+#: build/blockparty-tabs-nav-item/index.js:1
+msgid "Move tab after"
+msgstr "Déplacer l’onglet à droite"
 
 #: build/blockparty-tabs-nav-item/index.js:1
 msgid "Icon"
 msgstr "Icône"
 
 #: build/blockparty-tabs-nav-item/index.js:1
-msgid "Add Item Before"
-msgstr "Ajouter un élément à gauche"
-
-#: build/blockparty-tabs-nav-item/index.js:1
-msgid "Add Item After"
-msgstr "Ajouter un élément à droite"
-
-#: build/blockparty-tabs-nav-item/index.js:1
-msgid "Delete Item"
-msgstr "Éliminer l’élément"
-
-#: build/blockparty-tabs-nav-item/index.js:1
 msgid "Item…"
 msgstr "Élément…"
+
+#: build/blockparty-tabs-nav/index.js:1
+msgid "Settings"
+msgstr "Réglages"
+
+#: build/blockparty-tabs-nav/index.js:1
+msgid "Label"
+msgstr "Libellé"
+
+#: build/blockparty-tabs-nav/index.js:1
+msgid ""
+"Describe the purpose of this tabbed interface for assistive technologies."
+msgstr ""
+"Décrivez l'objectif de cette interface à onglets pour les technologies "
+"d'assistance."
 
 #: build/blockparty-tabs/index.js:1
 msgid "Align top left"
@@ -87,37 +104,50 @@ msgstr "Barre latérale à droite"
 msgid "Align sidebar left"
 msgstr "Barre latérale à gauche"
 
-#: build/blockparty-tabs/index.js:1
-msgid "Accessibility"
-msgstr "Accessibilité"
-
 #: build/blockparty-tabs-nav-item/block.json
 msgctxt "block title"
 msgid "Tab"
 msgstr "Onglet"
 
 #: build/blockparty-tabs-nav-item/block.json
-#: build/blockparty-tabs-nav/block.json
-#: build/blockparty-tabs-panel-item/block.json
-#: build/blockparty-tabs-panels/block.json
 msgctxt "block description"
-msgid "Accessible tabs block item"
-msgstr "Bloc Onglet Accessible"
+msgid "A single tab button used to switch to its matching content panel."
+msgstr ""
+"Un bouton d'onglet unique servant à basculer vers le panneau de contenu "
+"correspondant."
 
 #: build/blockparty-tabs-nav/block.json
 msgctxt "block title"
 msgid "Tabs list"
 msgstr "Liste des onglets"
 
+#: build/blockparty-tabs-nav/block.json
+msgctxt "block description"
+msgid "Display the tab list for switching between content panels."
+msgstr ""
+"Affichez la liste des onglets pour basculer entre les panneaux de contenu."
+
 #: build/blockparty-tabs-panel-item/block.json
 msgctxt "block title"
 msgid "Panel"
 msgstr "Panneau"
 
+#: build/blockparty-tabs-panel-item/block.json
+msgctxt "block description"
+msgid "The content panel shown when its matching tab is selected."
+msgstr ""
+"Le panneau de contenu qui s'affiche lorsque l'onglet correspondant est "
+"sélectionné."
+
 #: build/blockparty-tabs-panels/block.json
 msgctxt "block title"
 msgid "Panels"
 msgstr "Panneaux"
+
+#: build/blockparty-tabs-panels/block.json
+msgctxt "block description"
+msgid "Group the content panels of a tabbed interface."
+msgstr "Regroupez les panneaux de contenu d'une interface à onglets."
 
 #: build/blockparty-tabs/block.json
 msgctxt "block title"
@@ -126,8 +156,30 @@ msgstr "Onglets"
 
 #: build/blockparty-tabs/block.json
 msgctxt "block description"
-msgid "Accessible tabs block"
-msgstr "Bloc Onglet accessible pour WordPress"
+msgid ""
+"Organize content into tabs so visitors can browse sections without scrolling "
+"endlessly."
+msgstr ""
+
+#~ msgid "Add Item Before"
+#~ msgstr "Ajouter un élément à gauche"
+
+#~ msgid "Add Item After"
+#~ msgstr "Ajouter un élément à droite"
+
+#~ msgid "Delete Item"
+#~ msgstr "Éliminer l’élément"
+
+#~ msgid "Accessibility"
+#~ msgstr "Accessibilité"
+
+#~ msgctxt "block description"
+#~ msgid "Accessible tabs block item"
+#~ msgstr "Bloc Onglet Accessible"
+
+#~ msgctxt "block description"
+#~ msgid "Accessible tabs block"
+#~ msgstr "Bloc Onglet accessible pour WordPress"
 
 #~ msgid "Beapi Tabs Block"
 #~ msgstr "BeAPI Bloc Tabs"

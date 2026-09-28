@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       Blockparty Tabs
  * Description:       Accessible Tabs block for WordPress gutenberg.
- * Requires at least: 6.2
+ * Requires at least: 6.4
  * Requires PHP:      8.1
- * Version:           1.1.5
+ * Version:           2.0.0
  * Author:            Be API Technical team
  * Author URI:        https://beapi.fr
  * License:           GPL-2.0-or-later
@@ -14,7 +14,7 @@
 
 namespace Blockparty\Tabs;
 
-define( 'BLOCKPARTY_TABS_VERSION', '1.1.5' );
+define( 'BLOCKPARTY_TABS_VERSION', '2.0.0' );
 define( 'BLOCKPARTY_TABS_URL', plugin_dir_url( __FILE__ ) );
 define( 'BLOCKPARTY_TABS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKPARTY_TABS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -32,19 +32,145 @@ function init(): void {
 add_action( 'init', __NAMESPACE__ . '\\init' );
 
 /**
- * Allow aria attributes
+ * Default icon blocks allowed inside tab nav items.
  *
- * @param $tags
+ * `core/icon` ships in WordPress 7.0+. Legacy Blockparty / BeAPI icon blocks
+ * remain in the default list so icons keep working on the required 6.4+ range
+ * whenever those plugins are active. The editor keeps only registered names.
+ */
+const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS = [
+	'core/icon',
+	'blockparty/icon',
+	'beapi/icon-block',
+];
+
+/**
+ * Returns the icon block names allowed inside tab nav items.
  *
- * @return mixed
+ * @return string[] Block names (e.g. `core/icon`).
+ */
+function get_allowed_icon_blocks(): array {
+	/**
+	 * Filters the icon block types allowed inside tab nav items.
+	 *
+	 * Defaults prefer `core/icon` (WordPress 7.0+) and include
+	 * `blockparty/icon` / `beapi/icon-block` for older installs. Example —
+	 * allow only the native icon block:
+	 *
+	 *     add_filter(
+	 *         'blockparty_tabs_allowed_icon_blocks',
+	 *         static function (): array {
+	 *             return [ 'core/icon' ];
+	 *         }
+	 *     );
+	 *
+	 * The first registered block in the list is used as the InnerBlocks
+	 * template when enabling an icon on a tab.
+	 *
+	 * @param string[] $blocks Allowed block names.
+	 */
+	$blocks = apply_filters(
+		'blockparty_tabs_allowed_icon_blocks',
+		BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS
+	);
+
+	if ( ! is_array( $blocks ) ) {
+		return BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS;
+	}
+
+	$sanitized = [];
+	foreach ( $blocks as $block ) {
+		if ( ! is_string( $block ) ) {
+			continue;
+		}
+
+		$block = strtolower( trim( $block ) );
+		if ( ! preg_match( '/^[a-z0-9-]+\/[a-z0-9-]+$/', $block ) ) {
+			continue;
+		}
+
+		$sanitized[] = $block;
+	}
+
+	$sanitized = array_values( array_unique( $sanitized ) );
+
+	return [] === $sanitized ? BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS : $sanitized;
+}
+
+/**
+ * Passes editor settings (allowed icon blocks) to the nav-item script.
+ */
+function enqueue_editor_settings(): void {
+	$handle = generate_block_asset_handle( 'blockparty/tabs-nav-item', 'editorScript' );
+
+	if ( ! wp_script_is( $handle, 'registered' ) ) {
+		return;
+	}
+
+	$settings = [
+		'allowedIconBlocks' => get_allowed_icon_blocks(),
+	];
+
+	wp_add_inline_script(
+		$handle,
+		'window.blockpartyTabsSettings = ' . wp_json_encode( $settings ) . ';',
+		'before'
+	);
+}
+
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_settings' );
+
+/**
+ * Allow ARIA and tabindex attributes required by the saved tabs markup.
+ *
+ * Users without the `unfiltered_html` capability have post content filtered
+ * through KSES. Without these allowlist entries, attributes emitted by
+ * `save()` are stripped and the block fails validation on the next edit.
+ *
+ * @param array  $tags    Allowed HTML tags and attributes.
+ * @param string $context Context for the allowed tags.
+ * @return array
  */
 function allow_attributes( $tags, $context ) {
-	if ( 'post' === $context ) {
-		$tags['button']['aria-expanded'] = true;
-		$tags['div']['tabindex']         = true;
+	if ( 'post' !== $context ) {
+		return $tags;
 	}
+
+	$tags['button']['aria-expanded'] = true;
+	$tags['div']['tabindex']         = true;
+	$tags['a']['aria-controls']      = true;
+	$tags['a']['aria-selected']      = true;
+	$tags['a']['tabindex']           = true;
 
 	return $tags;
 }
 
 add_filter( 'wp_kses_allowed_html', __NAMESPACE__ . '\\allow_attributes', 10, 2 );
+
+/**
+ * Polyfill the `react-jsx-runtime` script for WordPress versions before 6.6.
+ *
+ * Built editor assets from modern `@wordpress/scripts` depend on this handle.
+ * Without it, block editor scripts do not load and blocks never register in JS.
+ *
+ * @param \WP_Scripts $scripts WP_Scripts instance.
+ */
+function register_react_jsx_runtime( $scripts ): void {
+	if ( isset( $scripts->registered['react-jsx-runtime'] ) ) {
+		return;
+	}
+
+	$asset = BLOCKPARTY_TABS_DIR . 'build/react-jsx-runtime.js';
+	if ( ! is_readable( $asset ) ) {
+		return;
+	}
+
+	$scripts->add(
+		'react-jsx-runtime',
+		BLOCKPARTY_TABS_URL . 'build/react-jsx-runtime.js',
+		[ 'react' ],
+		BLOCKPARTY_TABS_VERSION
+	);
+}
+
+add_action( 'wp_default_scripts', __NAMESPACE__ . '\\register_react_jsx_runtime' );

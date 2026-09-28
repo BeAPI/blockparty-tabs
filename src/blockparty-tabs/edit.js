@@ -3,14 +3,12 @@ import classnames from 'classnames';
 import {
 	useBlockProps,
 	useInnerBlocksProps,
-	InspectorControls,
 	BlockControls,
 	AlignmentControl,
 } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
-import { select } from '@wordpress/data';
+import { useEffect } from '@wordpress/element';
+import { select, useSelect } from '@wordpress/data';
 import {
-	heading,
 	justifyRight,
 	justifyCenter,
 	justifyLeft,
@@ -20,6 +18,7 @@ import {
 } from '@wordpress/icons';
 import './editor.scss';
 import { useSyncTabsActiveForTabsBlock } from './SyncTabsActive';
+import { TabsAddRemoveToolbar } from './TabsAddRemoveControls';
 
 const DEFAULT_TABS_POSITIONS = [
 	{
@@ -54,16 +53,23 @@ const DEFAULT_TABS_POSITIONS = [
 	},
 ];
 
-const setTabsIndex = ( setAttributes, clientId ) => {
-	const currentIndex =
-		select( 'core/block-editor' ).getBlockIndex( clientId );
-	setAttributes( { tabsIndex: currentIndex } );
-};
-
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	useSyncTabsActiveForTabsBlock( clientId );
-	setTabsIndex( setAttributes, clientId );
-	const { title, mode } = attributes;
+
+	const currentIndex = useSelect(
+		( selectStore ) =>
+			selectStore( 'core/block-editor' ).getBlockIndex( clientId ),
+		[ clientId ]
+	);
+
+	useEffect( () => {
+		if ( attributes.tabsIndex === currentIndex ) {
+			return;
+		}
+		setAttributes( { tabsIndex: currentIndex } );
+	}, [ attributes.tabsIndex, currentIndex, setAttributes ] );
+
+	const { mode } = attributes;
 	const blockProps = useBlockProps( {
 		className: classnames( {
 			[ `has-align-${ mode }` ]: mode,
@@ -86,7 +92,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	}
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
-		__experimentalDirectInsert: false,
+		directInsert: false,
 		templateLock: 'all',
 		template: [ [ 'blockparty/tabs-nav' ], [ 'blockparty/tabs-panels' ] ],
 		templateInsertUpdatesSelection: true,
@@ -102,24 +108,8 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						setAttributes( { mode: newAlign } )
 					}
 				/>
+				<TabsAddRemoveToolbar clientId={ clientId } />
 			</BlockControls>
-			<InspectorControls>
-				<PanelBody
-					title={ __( 'Accessibility', 'blockparty-tabs' ) }
-					icon={ heading }
-					initialOpen={ true }
-				>
-					<PanelRow>
-						<TextControl
-							value={ title }
-							label={ __( 'Title' ) }
-							onChange={ ( content ) => {
-								setAttributes( { title: content } );
-							} }
-						/>
-					</PanelRow>
-				</PanelBody>
-			</InspectorControls>
 			<div { ...innerBlocksProps } />
 		</>
 	);

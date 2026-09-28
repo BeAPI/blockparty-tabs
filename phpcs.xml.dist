@@ -5,12 +5,16 @@
 
 	<description>Coding Standard for Blockparty Tabs plugin</description>
 
-	<!-- Scan all files in directory -->
+	<!-- Scan plugin sources and PHPUnit setup -->
 	<file>blockparty-tabs.php</file>
+	<file>tests/bootstrap.php</file>
+	<file>tests/wp-tests-config.php</file>
+	<file>tests/php</file>
 
 	<exclude-pattern>./build/</exclude-pattern>
 	<exclude-pattern>./node_modules/</exclude-pattern>
 	<exclude-pattern>./src/</exclude-pattern>
+	<exclude-pattern>./tests/bin/</exclude-pattern>
 	<exclude-pattern>./tools/</exclude-pattern>
 	<exclude-pattern>./vendor/</exclude-pattern>
 
