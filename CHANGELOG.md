@@ -5,21 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 2.0.0 - 2026-09-24
+## 2.0.0 - 2026-09-28
 
-- Use native `core/icon` for tab icons by default (breaking change)
-- Fix frontend spacing for `core/icon` next to tab labels
-- Add `blockparty_tabs_allowed_icon_blocks` filter to allow Blockparty / BeAPI icon blocks
+- Require WordPress 6.2 or later
+- Prefer native `core/icon` for tab icons when available (WordPress 7.0+), with Blockparty / BeAPI icon blocks still allowed by default for WordPress 6.2–6.8
+- Fix frontend spacing and styles for `core/icon` next to tab labels
+- Add `blockparty_tabs_allowed_icon_blocks` filter to customize allowed icon blocks
 - Limit tabs to a single icon block (no duplication)
 - Improve accessibility: move `tablist` to nav and complete ARIA roles
 - Expand block supports and refresh block descriptions
+- Remove anchor support from the panel item block
 - Share add/remove tab toolbar controls across nav and panels
 - Add appender to insert synced tabs from the navigation
-- Fix KSES stripping of `aria-selected` and `tabindex` on tab links
+- Fix KSES stripping of tab ARIA attributes (`aria-controls`, `aria-selected`, `aria-expanded`) and `tabindex`
 - Fix stale active index after tab removal
 - Fix panel pairing locks when moving tabs
 - Fix deprecated block versions omitting original supports
-- Fix first-tab validation after saving `is-active` on nav items
+- Fix block validation after save when existing tabs were invalidated
+- Fix saved tab nav items missing the active class
+- Ship a `react-jsx-runtime` webpack polyfill so editor scripts load on WordPress 6.2–6.5
+- Fix editor warnings by avoiding setState during render and enabling direct inner block insertion
+- Add PHPUnit, Jest, and Playwright test suites with GitHub Actions CI
 - Update French translations
 - Move release/version scripts under `tests/bin`
 - Remove `@beapi/icons` dependency
