@@ -154,6 +154,33 @@ npm run lint:js
 npm run lint:css
 ```
 
+### Testing
+
+PHP integration tests run inside an isolated wp-env instance (port `8889`):
+
+```bash
+composer install
+npm install
+npm run build
+npm run env:start-tests
+npm run test:php
+npm run env:stop-tests
+```
+
+JavaScript unit tests (Jest via `@wordpress/scripts`):
+
+```bash
+npm run test:unit:js
+```
+
+End-to-end tests (Playwright — editor insertion + frontend ARIA/keyboard):
+
+```bash
+npx playwright install chromium
+npm run build
+npm run test:e2e
+```
+
 ## Support
 
 For bug reports and feature requests, please use the [GitHub issues](https://github.com/BeAPI/blockparty-tabs/issues) page.

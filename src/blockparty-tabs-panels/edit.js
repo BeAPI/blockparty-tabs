@@ -9,7 +9,7 @@ export default function Edit( { clientId } ) {
 	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
-		__experimentalDirectInsert: false,
+		directInsert: false,
 		templateLock: false,
 		template: [
 			[ BLOCKS_CHILD, LOCK_TEMPLATE ],

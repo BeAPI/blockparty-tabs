@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
 import ComposeBlockControls from './ComposeBlockControls';
-import getSynchedID from '../blockparty-tabs/GetSynchedID';
+import useSynchedID from '../blockparty-tabs/GetSynchedID';
 import {
 	getIconTemplateAttributes,
 	getRegisteredIconBlocks,
@@ -14,7 +14,7 @@ export default function Edit( {
 	clientId,
 	context,
 } ) {
-	getSynchedID( clientId, context, setAttributes );
+	useSynchedID( clientId, context, attributes, setAttributes );
 
 	const registeredIconBlocks = getRegisteredIconBlocks();
 	const hasIconBlock = registeredIconBlocks.length > 0;
@@ -53,7 +53,6 @@ export default function Edit( {
 					{ hasIcon && hasIconBlock && (
 						<InnerBlocks
 							allowedBlocks={ registeredIconBlocks }
-							__experimentalDirectInsert={ false }
 							templateLock="insert"
 							template={ [
 								[
