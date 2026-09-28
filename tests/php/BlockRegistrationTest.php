@@ -70,4 +70,14 @@ class BlockRegistrationTest extends WP_UnitTestCase {
 	public function test_blockparty_tabs_init_action_ran_during_bootstrap(): void {
 		$this->assertGreaterThan( 0, did_action( 'blockparty_tabs_init' ) );
 	}
+
+	/**
+	 * @return void
+	 */
+	public function test_react_jsx_runtime_script_is_registered(): void {
+		$this->assertTrue(
+			wp_script_is( 'react-jsx-runtime', 'registered' ),
+			'Expected react-jsx-runtime to be registered (core or plugin polyfill).'
+		);
+	}
 }
