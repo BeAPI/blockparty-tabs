@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Blockparty Tabs
  * Description:       Accessible Tabs block for WordPress gutenberg.
- * Requires at least: 6.2
+ * Requires at least: 6.4
  * Requires PHP:      8.1
  * Version:           1.1.5
  * Author:            Be API Technical team
@@ -32,9 +32,17 @@ function init(): void {
 add_action( 'init', __NAMESPACE__ . '\\init' );
 
 /**
- * Default icon block used inside tab nav items.
+ * Default icon blocks allowed inside tab nav items.
+ *
+ * `core/icon` ships in WordPress 7.0+. Legacy Blockparty / BeAPI icon blocks
+ * remain in the default list so icons keep working on the required 6.4+ range
+ * whenever those plugins are active. The editor keeps only registered names.
  */
-const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK = 'core/icon';
+const BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS = [
+	'core/icon',
+	'blockparty/icon',
+	'beapi/icon-block',
+];
 
 /**
  * Returns the icon block names allowed inside tab nav items.
@@ -45,15 +53,14 @@ function get_allowed_icon_blocks(): array {
 	/**
 	 * Filters the icon block types allowed inside tab nav items.
 	 *
-	 * By default only `core/icon` is allowed. To keep supporting
-	 * Blockparty Icons / BeAPI Icon Block as before:
+	 * Defaults prefer `core/icon` (WordPress 7.0+) and include
+	 * `blockparty/icon` / `beapi/icon-block` for older installs. Example —
+	 * allow only the native icon block:
 	 *
 	 *     add_filter(
 	 *         'blockparty_tabs_allowed_icon_blocks',
-	 *         static function ( array $blocks ): array {
-	 *             $blocks[] = 'blockparty/icon';
-	 *             $blocks[] = 'beapi/icon-block';
-	 *             return $blocks;
+	 *         static function (): array {
+	 *             return [ 'core/icon' ];
 	 *         }
 	 *     );
 	 *
@@ -64,11 +71,11 @@ function get_allowed_icon_blocks(): array {
 	 */
 	$blocks = apply_filters(
 		'blockparty_tabs_allowed_icon_blocks',
-		[ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ]
+		BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS
 	);
 
 	if ( ! is_array( $blocks ) ) {
-		return [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ];
+		return BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS;
 	}
 
 	$sanitized = [];
@@ -87,7 +94,7 @@ function get_allowed_icon_blocks(): array {
 
 	$sanitized = array_values( array_unique( $sanitized ) );
 
-	return [] === $sanitized ? [ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ] : $sanitized;
+	return [] === $sanitized ? BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS : $sanitized;
 }
 
 /**

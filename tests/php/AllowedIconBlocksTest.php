@@ -9,7 +9,7 @@ namespace Blockparty\Tabs\Tests;
 
 use WP_UnitTestCase;
 use function Blockparty\Tabs\get_allowed_icon_blocks;
-use const Blockparty\Tabs\BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK;
+use const Blockparty\Tabs\BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS;
 
 /**
  * @covers ::Blockparty\Tabs\get_allowed_icon_blocks
@@ -27,9 +27,34 @@ class AllowedIconBlocksTest extends WP_UnitTestCase {
 	/**
 	 * @return void
 	 */
-	public function test_defaults_to_core_icon(): void {
+	public function test_defaults_include_core_and_legacy_icon_blocks(): void {
 		$this->assertSame(
-			[ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ],
+			BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS,
+			get_allowed_icon_blocks()
+		);
+		$this->assertSame(
+			[
+				'core/icon',
+				'blockparty/icon',
+				'beapi/icon-block',
+			],
+			get_allowed_icon_blocks()
+		);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function test_filter_can_replace_icon_blocks(): void {
+		add_filter(
+			'blockparty_tabs_allowed_icon_blocks',
+			static function (): array {
+				return [ 'core/icon' ];
+			}
+		);
+
+		$this->assertSame(
+			[ 'core/icon' ],
 			get_allowed_icon_blocks()
 		);
 	}
@@ -41,8 +66,7 @@ class AllowedIconBlocksTest extends WP_UnitTestCase {
 		add_filter(
 			'blockparty_tabs_allowed_icon_blocks',
 			static function ( array $blocks ): array {
-				$blocks[] = 'blockparty/icon';
-				$blocks[] = 'beapi/icon-block';
+				$blocks[] = 'my-plugin/custom-icon';
 				return $blocks;
 			}
 		);
@@ -52,6 +76,7 @@ class AllowedIconBlocksTest extends WP_UnitTestCase {
 				'core/icon',
 				'blockparty/icon',
 				'beapi/icon-block',
+				'my-plugin/custom-icon',
 			],
 			get_allowed_icon_blocks()
 		);
@@ -97,7 +122,7 @@ class AllowedIconBlocksTest extends WP_UnitTestCase {
 		);
 
 		$this->assertSame(
-			[ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ],
+			BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS,
 			get_allowed_icon_blocks()
 		);
 	}
@@ -114,7 +139,7 @@ class AllowedIconBlocksTest extends WP_UnitTestCase {
 		);
 
 		$this->assertSame(
-			[ BLOCKPARTY_TABS_DEFAULT_ICON_BLOCK ],
+			BLOCKPARTY_TABS_DEFAULT_ICON_BLOCKS,
 			get_allowed_icon_blocks()
 		);
 	}
