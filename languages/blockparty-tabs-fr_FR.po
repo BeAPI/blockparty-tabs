@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blockparty Tabs 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blockparty-tabs\n"
-"POT-Creation-Date: 2026-09-24T13:02:27+00:00\n"
-"PO-Revision-Date: 2026-09-24 15:04+0200\n"
+"POT-Creation-Date: 2026-09-29T11:45:30+00:00\n"
+"PO-Revision-Date: 2026-09-29 13:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: blockparty-tabs.php
 msgid "Blockparty Tabs"
-msgstr ""
+msgstr "Blockparty Onglets"
 
 #. Description of the plugin
 #: blockparty-tabs.php
@@ -37,15 +37,13 @@ msgstr "https://beapi.fr"
 
 #: build/blockparty-tabs-nav-item/index.js:1
 #: build/blockparty-tabs-nav/index.js:1
-#: build/blockparty-tabs-panel-item/index.js:1
-#: build/blockparty-tabs-panels/index.js:1 build/blockparty-tabs/index.js:1
+#: build/blockparty-tabs-panel-item/index.js:1 build/blockparty-tabs/index.js:1
 msgid "Add tab"
 msgstr "Ajouter un onglet"
 
 #: build/blockparty-tabs-nav-item/index.js:1
 #: build/blockparty-tabs-nav/index.js:1
-#: build/blockparty-tabs-panel-item/index.js:1
-#: build/blockparty-tabs-panels/index.js:1 build/blockparty-tabs/index.js:1
+#: build/blockparty-tabs-panel-item/index.js:1 build/blockparty-tabs/index.js:1
 msgid "Remove tab"
 msgstr "Supprimer l’onglet"
 
@@ -160,6 +158,8 @@ msgid ""
 "Organize content into tabs so visitors can browse sections without scrolling "
 "endlessly."
 msgstr ""
+"Organisez le contenu en onglets afin que les visiteurs puissent parcourir "
+"les sections sans avoir à faire défiler la page indéfiniment."
 
 #~ msgid "Add Item Before"
 #~ msgstr "Ajouter un élément à gauche"
