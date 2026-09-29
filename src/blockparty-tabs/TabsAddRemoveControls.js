@@ -195,25 +195,40 @@ export const useTabsMutations = ( clientId, index ) => {
 /**
  * Toolbar group with Add tab / Remove tab buttons.
  *
- * @param {Object} props          Component props.
- * @param {string} props.clientId Block clientId (any block in the tabs tree).
- * @param {number} [props.index]  Explicit tab index; falls back to tabsActive.
- * @return {Element} Toolbar group.
+ * @param {Object}  props              Component props.
+ * @param {string}  props.clientId     Block clientId (any block in the tabs tree).
+ * @param {number}  [props.index]      Explicit tab index; falls back to tabsActive.
+ * @param {boolean} [props.showAdd]    Whether to show the Add tab control.
+ * @param {boolean} [props.showRemove] Whether to show the Remove tab control.
+ * @return {Element|null} Toolbar group.
  */
-export const TabsAddRemoveToolbar = ( { clientId, index } ) => {
+export const TabsAddRemoveToolbar = ( {
+	clientId,
+	index,
+	showAdd = true,
+	showRemove = true,
+} ) => {
 	const { canRemove, insertTabAfterActive, removeTab } = useTabsMutations(
 		clientId,
 		index
 	);
 
+	if ( ! showAdd && ! showRemove ) {
+		return null;
+	}
+
 	return (
 		<ToolbarGroup>
-			<ToolbarButton onClick={ insertTabAfterActive }>
-				{ __( 'Add tab', 'blockparty-tabs' ) }
-			</ToolbarButton>
-			<ToolbarButton isDisabled={ ! canRemove } onClick={ removeTab }>
-				{ __( 'Remove tab', 'blockparty-tabs' ) }
-			</ToolbarButton>
+			{ showAdd && (
+				<ToolbarButton onClick={ insertTabAfterActive }>
+					{ __( 'Add tab', 'blockparty-tabs' ) }
+				</ToolbarButton>
+			) }
+			{ showRemove && (
+				<ToolbarButton isDisabled={ ! canRemove } onClick={ removeTab }>
+					{ __( 'Remove tab', 'blockparty-tabs' ) }
+				</ToolbarButton>
+			) }
 		</ToolbarGroup>
 	);
 };
@@ -241,13 +256,31 @@ export const TabsNavAppender = ( { clientId } ) => {
 /**
  * BlockControls wrapper for Add / Remove tab actions.
  *
- * @param {Object} props          Component props.
- * @param {string} props.clientId Block clientId (any block in the tabs tree).
- * @param {number} [props.index]  Explicit tab index; falls back to tabsActive.
- * @return {Element} Block controls with shared toolbar.
+ * @param {Object}  props              Component props.
+ * @param {string}  props.clientId     Block clientId (any block in the tabs tree).
+ * @param {number}  [props.index]      Explicit tab index; falls back to tabsActive.
+ * @param {boolean} [props.showAdd]    Whether to show the Add tab control.
+ * @param {boolean} [props.showRemove] Whether to show the Remove tab control.
+ * @return {Element|null} Block controls with shared toolbar.
  */
-export const TabsAddRemoveBlockControls = ( { clientId, index } ) => (
-	<BlockControls>
-		<TabsAddRemoveToolbar clientId={ clientId } index={ index } />
-	</BlockControls>
-);
+export const TabsAddRemoveBlockControls = ( {
+	clientId,
+	index,
+	showAdd = true,
+	showRemove = true,
+} ) => {
+	if ( ! showAdd && ! showRemove ) {
+		return null;
+	}
+
+	return (
+		<BlockControls>
+			<TabsAddRemoveToolbar
+				clientId={ clientId }
+				index={ index }
+				showAdd={ showAdd }
+				showRemove={ showRemove }
+			/>
+		</BlockControls>
+	);
+};

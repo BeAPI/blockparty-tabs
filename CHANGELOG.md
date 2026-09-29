@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.0.1 - 2026-09-29
+
+- Fix full-width (`alignfull`) tabs so panel padding is reset correctly
+- Scope add/remove tab toolbar controls per block type (avoid ambiguous deletions from the panels wrapper)
+- Update French translations
+
 ## 2.0.0 - 2026-09-28
 
 - Require WordPress 6.2 or later
