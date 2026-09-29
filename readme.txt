@@ -4,7 +4,7 @@ Tags:              block, tabs, accessibility
 Requires at least: 6.4
 Requires PHP:      8.1
 Tested up to:      7.1
-Stable tag:        2.0.0
+Stable tag:        2.0.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,12 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 2.0.1 =
+
+* Fix full-width (`alignfull`) tabs so panel padding is reset correctly
+* Scope add/remove tab toolbar controls per block type (avoid ambiguous deletions from the panels wrapper)
+* Update French translations
 
 = 2.0.0 =
 
