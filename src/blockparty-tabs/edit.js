@@ -108,7 +108,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 						setAttributes( { mode: newAlign } )
 					}
 				/>
-				<TabsAddRemoveToolbar clientId={ clientId } />
+				<TabsAddRemoveToolbar
+					clientId={ clientId }
+					showRemove={ false }
+				/>
 			</BlockControls>
 			<div { ...innerBlocksProps } />
 		</>

@@ -52,7 +52,11 @@ export default function Edit( {
 
 	return (
 		<>
-			<TabsAddRemoveBlockControls clientId={ clientId } index={ index } />
+			<TabsAddRemoveBlockControls
+				clientId={ clientId }
+				index={ index }
+				showAdd={ false }
+			/>
 			<div { ...blockProps }>
 				<InnerBlocks
 					allowedBlocks={ allowedBlocks }

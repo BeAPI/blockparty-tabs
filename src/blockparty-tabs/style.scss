@@ -83,7 +83,9 @@
         }
     }
 
-    &-panels {
+    .wp-block-blockparty-tabs-panels {
+        margin-block-start: 0;
+
         .alignfull & {
             padding: 0 !important;
         }

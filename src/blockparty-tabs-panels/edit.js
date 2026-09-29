@@ -1,11 +1,10 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import { TabsAddRemoveBlockControls } from '../blockparty-tabs/TabsAddRemoveControls';
 
 const BLOCKS_CHILD = 'blockparty/tabs-panel-item';
 const ALLOWED_BLOCKS = [ BLOCKS_CHILD ];
 const LOCK_TEMPLATE = { lock: { move: true, remove: true } };
 
-export default function Edit( { clientId } ) {
+export default function Edit() {
 	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: ALLOWED_BLOCKS,
@@ -20,10 +19,5 @@ export default function Edit( { clientId } ) {
 		renderAppender: false,
 	} );
 
-	return (
-		<>
-			<TabsAddRemoveBlockControls clientId={ clientId } />
-			<section { ...innerBlocksProps } />
-		</>
-	);
+	return <section { ...innerBlocksProps } />;
 }
