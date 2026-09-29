@@ -35,7 +35,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	return (
 		<>
-			<TabsAddRemoveBlockControls clientId={ clientId } />
+			<TabsAddRemoveBlockControls
+				clientId={ clientId }
+				showRemove={ false }
+			/>
 			<InspectorControls>
 				<PanelBody
 					title={ __( 'Settings', 'blockparty-tabs' ) }
