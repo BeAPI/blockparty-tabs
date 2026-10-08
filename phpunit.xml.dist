@@ -18,6 +18,7 @@
 	<coverage processUncoveredFiles="false">
 		<include>
 			<file>blockparty-tabs.php</file>
+			<directory suffix=".php">includes</directory>
 		</include>
 	</coverage>
 </phpunit>

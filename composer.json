@@ -1,5 +1,6 @@
 {
   "name": "beapi/blockparty-tabs",
+  "version": "2.1.0",
   "description": "Accessible Tabs block for WordPress gutenberg.",
   "type": "wordpress-plugin",
   "keywords": ["wordpress", "plugin", "tabs", "gutenberg"],
@@ -21,6 +22,11 @@
     },
     "platform": {
       "php": "8.1.99"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Blockparty\\Tabs\\": "includes/"
     }
   },
   "require": {

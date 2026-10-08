@@ -14,6 +14,8 @@
 
 namespace Blockparty\Tabs;
 
+use Blockparty\Tabs\Cli\MigrateFromTabsBlockCommand;
+
 define( 'BLOCKPARTY_TABS_VERSION', '2.0.1' );
 define( 'BLOCKPARTY_TABS_URL', plugin_dir_url( __FILE__ ) );
 define( 'BLOCKPARTY_TABS_DIR', plugin_dir_path( __FILE__ ) );
@@ -174,3 +176,7 @@ function register_react_jsx_runtime( $scripts ): void {
 }
 
 add_action( 'wp_default_scripts', __NAMESPACE__ . '\\register_react_jsx_runtime' );
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	\WP_CLI::add_command( 'blockparty-tabs migrate-from-tabs-block', MigrateFromTabsBlockCommand::class );
+}
