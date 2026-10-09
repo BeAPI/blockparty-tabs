@@ -5,13 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 2.1.0 - 2026-10-08
-
-- Add WP-CLI command `wp blockparty-tabs migrate-from-tabs-block` to migrate `beapi/tabs*` content to `blockparty/tabs*` (`--dry-run`, `--post-type`, `--posts-per-page`)
-- Add `MIGRATION.md` for upgrading from `beapi/tabs-block`
-- Add PHPUnit coverage for the tabs block migrator
-- Skip block registration when compiled `build/` assets are missing
-
 ## 2.0.1 - 2026-09-29
 
 - Fix full-width (`alignfull`) tabs so panel padding is reset correctly
