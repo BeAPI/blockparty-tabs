@@ -4,7 +4,7 @@ Tags:              block, tabs, accessibility
 Requires at least: 6.4
 Requires PHP:      8.1
 Tested up to:      7.1
-Stable tag:        2.0.1
+Stable tag:        2.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,12 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 2.1.0 =
+
+* Add WP-CLI command `wp blockparty-tabs migrate-from-tabs-block` to migrate `beapi/tabs*` content to `blockparty/tabs*`
+* Add `MIGRATION.md` for upgrading from `beapi/tabs-block`
+* Add PHPUnit coverage for the tabs block migrator
 
 = 2.0.1 =
 
