@@ -4,7 +4,7 @@
  * Description:       Accessible Tabs block for WordPress gutenberg.
  * Requires at least: 6.4
  * Requires PHP:      8.1
- * Version:           2.0.1
+ * Version:           2.1.0
  * Author:            Be API Technical team
  * Author URI:        https://beapi.fr
  * License:           GPL-2.0-or-later
@@ -20,7 +20,7 @@ if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
 	include_once __DIR__ . '/vendor/autoload.php';
 }
 
-define( 'BLOCKPARTY_TABS_VERSION', '2.0.1' );
+define( 'BLOCKPARTY_TABS_VERSION', '2.1.0' );
 define( 'BLOCKPARTY_TABS_URL', plugin_dir_url( __FILE__ ) );
 define( 'BLOCKPARTY_TABS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BLOCKPARTY_TABS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
